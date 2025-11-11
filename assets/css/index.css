@@ -1,0 +1,177 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
+
+body {
+  height: 100vh;
+  background: #4C8F5A !important;
+}
+
+
+nav {
+  padding: 25px !important;
+  text-align: center;
+  display: flex;
+  justify-content: center !important;
+  flex-direction: row;
+}
+
+
+#corpo-foto {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+
+#img-simrd {
+  width: 200px;
+  text-align: center;
+  align-items: center;
+}
+
+
+a {
+  text-decoration: none;
+  color: black;
+}
+
+
+#tit {
+  background-color: #fff;
+  border-radius: 2px;
+  font-weight: 100;
+  padding: 15px;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+
+/*REPOSIÇÃO*/
+#login-box {
+  justify-content: center;
+  width: 50%;
+  background: white;
+  margin-top: 5%;
+  padding: 15px;
+  border-radius: 12px;
+  text-align: center;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+
+#login-box a{
+  padding: 12px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+
+#login-box a button {
+  background: #3c3c3c;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+
+#coluna {
+  display: flex;
+  justify-content: space-around;
+  flex-direction: row;
+}
+
+
+#card-corpo {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 12px;
+  height: 184px;
+  margin: 10px;
+  border-bottom: #4C8F5A;
+  width: 140px;
+}
+
+
+.card-foto {
+  width: 90px;
+  height: 90px;
+  align-items: center;
+  text-align: center;
+}
+
+
+.logos {
+  margin-top: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  position: relative;
+  top: -25px;
+  margin-left: 25%;
+  margin-right: 38%;
+}
+
+
+.logos img {
+  height: 40px;
+  align-items: center;
+  margin-left: 43%;
+  margin-right: 80%;
+  margin-top: 12%;
+}
+
+
+#card-pai {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+}
+
+
+.container {
+  align-items: center;
+  margin-top: 55px;
+}
+
+
+#bt1 {
+  font-size: 5px;
+  padding: 3px;
+  height: 45px;
+  font-weight: 550;
+  width: 120px;
+}
+
+
+#bt1:hover {
+  background-color: #4C8F5A;
+}
+
+
+.col {
+  justify-content: space-around;
+  flex: 0 0 0 !important;
+}
+
+
+#colunas {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+
+

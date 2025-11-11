@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Escola - Home</title>
+    <link rel="stylesheet" href="../bootstrap/CSS/bootstrap.min.css">
+    <script src="../bootstrap/JS/bootstrap.bundle.min.js"></script>
+    <link rel="icon" type="image/x-icon" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/favicon.ico">
+</head>
+<style>
+    main {
+        display: flex;
+    }
+    nav {
+        width: 250px;
+        height: 100vh;
+        background-color: #f8f9fa;
+        padding: 20px;
+        box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+    nav ul {
+        list-style-type: none;
+        padding: 0;
+    }
+    nav ul li {
+        margin: 15px 0;
+    }
+    nav ul li a {
+        text-decoration: none;
+        color: #333;
+        font-weight: bold;
+    }
+    section {
+        flex-grow: 1;
+        padding: 20px;
+    }
+    .card {
+        margin: 10px;
+        padding: 20px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        text-align: center;
+    }
+    .ranking-box {
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        padding: 20px;
+        background-color: #fff;
+        width: 100%;
+    }
+
+
+</style>
+<body>
+    <main>
+    <nav>
+        <div class="logo">
+            <img src="#" alt="Logo">
+        </div>
+        <hr>
+        <ul>
+            <li> <img src="#" alt="#"><a href="#">Dashboard</a></li>
+            <li><img src="#" alt="#"><a href="#">Escolas</a></li>
+            <li><img src="#" alt="#"><a href="#">Relatórios</a></li>
+        </ul>
+        <hr>
+            <a href="index.html" style="text-decoration: none; color: black;">Sair</a>
+    </nav>
+
+    <section>
+        <h2>Dashboard da Escola</h2>
+
+        <div>
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#CadastrarPlanoModal"> Cadastrar Plano</button>
+        </div>
+
+        <div class="row row-cols-1 row-cols-md-3 g-4">
+                 <div class="col sm-4">
+                  <div class="card h-100">
+                   <div class="card-body">
+                    <div class="card-title"></div>
+                    <p class="card-text">Planejamento Pendente</p>
+                   </div>
+                 </div>
+                 </div>
+
+                 <div class="col sm-4">
+                  <div class="card h-100">
+                   <div class="card-body">
+                    <div class="card-title"></div>
+                    <p class="card-text">Planejamento em Execução</p>
+                   </div>
+                 </div>
+                 </div>
+
+                 <div class="col sm-4">
+                  <div class="card h-100">
+                   <div class="card-body">
+                    <div class="card-title"></div>
+                    <p class="card-text">Planejamento Concluído</p>
+                   </div>
+                 </div>
+               </div>
+                </div>
+
+                <div class="row">
+            <div class="col-12">
+            <div class="ranking-box mt-4">
+                <div class="ranking-header">
+                    <h3></h3>
+                    <div>
+                        <form></form>
+                            <input type="text" placeholder="Buscar Escola">
+                            <button type="submit">Buscar</button>
+                        </form>
+                    </div>
+                </div>
+                <div class="ranking-content">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Status</th>
+                                <th>Escola</th>
+                                <th>Plano</th>
+                                <th>Componente</th>
+                                <th>Responsável</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+    </section>
+
+    <div class="modal fade" id="CadastrarPlanoModal" tabindex="-1" aria-labelledby="CadastrarPlanoModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-xl">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="CadastrarPlanoModalLabel">Cadastrar Plano</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div>
+                        <form>
+                            <label for="titulo">Avaliação Formativa:</label>
+                            <select name="" id="">
+                                <option value="">Selecione a Avaliação</option>
+                                <option value="1">CNCA</option>
+                                <option value="2">Avalie CE</option>
+                                <option value="3">Pacto pela Recomposição</option>
+                            </select>
+                            <label for="componente">Componente:</label>
+                            <select name="" id="">
+                                <option value="">Selecione o Componente</option>
+                                <option value="1">Língua Portuguesa</option>
+                                <option value="2">Matemática</option>
+                            </select>
+                            <label for="ciclo">Ciclo:</label>
+                            <select name="" id="">
+                                <option value="">Selecione o Ciclo</option>
+                                <option value="1">Ciclo I</option>
+                                <option value="2">Ciclo II</option>
+                                <option value="3">Ciclo III</option>
+                            </select>
+                            <label for="responsavel">Responsável:</label>
+                            <input type="text" name="responsavel" id="responsavel">
+                        </form>
+                    </div>
+
+                    <div class="table-responsive mt-3 mb-4">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Avaliação Formativa</th>
+                                    <th>Série</th>
+                                    <th>Qtd Alunos Previstos</th>
+                                    <th>Qtd Alunos Avaliados</th>
+                                    <th>Alunos em Defasagem (%)</th>
+                                    <th>Qtd de Alunos em Defasagem</th>
+                                    <th>Meta de Redução de Defasagem (%)</th>
+                                    <th>Meta de Redução de Defasagem</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td> <select name="avaliacao_formativa" id="">
+                                            <option value="">Selecione a Avaliação</option>
+                                          <option value="avaliacao1">CNCA</option>
+                                          <option value="avaliacao2">Avalie CE</option>
+                                          <option value="avaliacao3">Pacto pela Recomposição</option>
+                                    </select> </td>
+                                    <td><select name="serie" id="">
+                                          <option value="">Selecione a Série</option>
+                                          <option value="1">1º Ano</option>
+                                          <option value="2">2º Ano</option>
+                                          <option value="3">3º Ano</option>
+                                          <option value="4">4º Ano</option>
+                                          <option value="5">5º Ano</option>
+                                          <option value="6">6º Ano</option>
+                                          <option value="7">7º Ano</option>
+                                          <option value="8">8º Ano</option>
+                                          <option value="9">9º Ano</option>
+                                    </select></td>
+                                    <td><input type="text" name="qtd_alunos_previstos" id=""></td>
+                                    <td><input type="text" name="qtd_alunos_avaliados" id=""></td>
+                                    <td><input type="text" name="alunos_em_defasagem" id=""></td>
+                                    <td><input type="text" name="qtd_alunos_em_defasagem" id=""></td>
+                                    <td><input type="text" name="meta_reducao_defasagem" id=""></td>
+                                    <td><input type="text" name="meta_reducao_defasagem_valor" id=""></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="table-responsive mt-5">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Avaliação Formativa</th>
+                                    <th>Série</th>
+                                    <th>Habilidades Críticas</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>#</td>
+                                    <td>#</td>
+                                    <td><input type="text" name="habilidades_criticas" id=""></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="table-responsive mt-5">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Tarefas de Plano</th>
+                                    <th>Série</th>
+                                    <th>Data de Início</th>
+                                    <th>Data de Término</th>
+                                    <th>Responsável</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><input type="text" name="tarefas_plano" id=""></td>
+                                    <td><select type="text" name="serie" id="">
+                                            <option value="">Selecione a Série</option>
+                                            <option value="1">1º Ano</option>
+                                            <option value="2">2º Ano</option>
+                                            <option value="3">3º Ano</option>
+                                            <option value="4">4º Ano</option>
+                                            <option value="5">5º Ano</option>
+                                            <option value="6">6º Ano</option>
+                                            <option value="7">7º Ano</option>
+                                            <option value="8">8º Ano</option>
+                                            <option value="9">9º Ano</option>
+                                    </select></td>
+                                    <td><input type="date" name="data_inicio" id=""></td>
+                                    <td><input type="date" name="data_termino" id=""></td>
+                                    <td><input type="text" name="responsavel" id=""></td>
+                                    <td><select type="text" name="status" id="">
+                                            <option value="">Selecione o Status</option>
+                                            <option value="1">Não Realizado</option>
+                                            <option value="2">Planejado</option>
+                                            <option value="3">Replanejado</option>
+                                            <option value="4">Realizado no Prazo</option>
+                                            <option value="5">Realizado com Atraso</option>
+                                    </select></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+                    <button type="button" class="btn btn-primary">Cadastrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+</body>
+</html>

@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crede - Home</title>
+    <link rel="stylesheet" href="../bootstrap/CSS/bootstrap.min.css">
+    <script src="../bootstrap/JS/bootstrap.bundle.min.js"></script>
+    <link rel="icon" type="image/x-icon" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/favicon.ico">
+
+</head>
+<style>
+    main {
+        display: flex;
+    }
+    nav {
+        width: 250px;
+        height: 100vh;
+        background-color: #f8f9fa;
+        padding: 20px;
+        box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+    nav ul {
+        list-style-type: none;
+        padding: 0;
+    }
+    nav ul li {
+        margin: 15px 0;
+    }
+    nav ul li a {
+        text-decoration: none;
+        color: #333;
+        font-weight: bold;
+    }
+    section {
+        flex-grow: 1;
+        padding: 20px;
+    }
+    .card {
+        margin: 10px;
+        padding: 20px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        text-align: center;
+    }
+    .ranking-box {
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        padding: 20px;
+        background-color: #fff;
+        width: 100%;
+    }
+
+</style>
+<body>
+    <main>
+        <nav>
+           <img src="#">
+           <hr>
+              <ul class="nav flex-column bottom-nav">
+                <li><img src="#"><a href="../html/dashboard_admin.html">Dashboard</a></li>
+                <li><img src="#"><a href="../html/lista_secretarias.html">Secretarias</a></li>
+                <li><img src="#"><a href="../html/lista_escolas.html">Escolas</a></li>
+                <li><img src="#"><a href="../html/lista_relatorios.html">Relatórios</a></li>
+              </ul>
+
+              <div>
+                <hr>
+                <a href="#" style="text-decoration: none; color: black;">Sair</a>
+              </div>
+        </nav>
+        <section>
+            <h2>Dashboard Administrator</h2>
+            <div class="mb-3 text-center">
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#CadastrarSecretariaModal"> Cadastrar Secretaria </button>
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#CadastrarEscolaModal"> Cadastrar Escola </button>
+            </div>
+                <div class="row row-cols-1 row-cols-md-3 g-4">
+                 <div class="col sm-4">
+                  <div class="card h-100">
+                   <div class="card-body">
+                    <div class="card-title"></div>
+                    <p class="card-text">Planejamento Pendente</p>
+                   </div>
+                 </div>
+                 </div>
+                 
+                 <div class="col sm-4">
+                  <div class="card h-100">
+                   <div class="card-body">
+                    <div class="card-title"></div>
+                    <p class="card-text">Planejamento em Execução</p>
+                   </div>
+                 </div>
+                 </div>
+                 
+                 <div class="col sm-4">
+                  <div class="card h-100">
+                   <div class="card-body">
+                    <div class="card-title"></div>
+                    <p class="card-text">Planejamento Concluído</p>
+                   </div>
+                 </div>
+               </div>
+                </div>
+
+            <div class="row">
+            <div class="col-12">
+            <div class="ranking-box mt-4">
+                <div>
+                    <form>
+
+                    </form>
+                    <div class="table mt-3">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th scope="col-2">Status</th>
+                                    <th scope="col-2">Secretaria</th>
+                                    <th scope="col-2">Escola</th>
+                                    <th scope="col-3">Plano</th>
+                                    <th scope="col-2">Responsável</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+        <div class="modal fade" id="CadastrarSecretariaModal" tabindex="-1" aria-labelledby="CadastrarSecretariaModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="CadastrarSecretariaModalLabel">Cadastrar Secretaria</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form>
+                            <div class="mb-3">
+                                <label for="secretariaNome" class="form-label">Nome da Instituição</label>
+                                <input type="text" class="form-control" id="secretariaName" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="secretariaMunicípio" class="form-label">Município</label>
+                                <select class="form-select" id="secretariaMunicipio" required>
+                                    <option value="">Selecione o Município</option>
+                                    <option value="1">Canindé</option>
+                                    <option value="2">Caridade</option>
+                                    <option value="3">General Sampaio</option>
+                                    <option value="4">Itatira</option>
+                                    <option value="5">Paramoti</option>
+                                    <option value="6">Santa Quitéria</option>
+                                </select>
+                            </div>
+                            <div class="mb-3">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                            <button type="submit" class="btn btn-primary">Enviar</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal fade" id="CadastrarEscolaModal" tabindex="-1" aria-labelledby="CadastrarEscolaModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="CadastrarEscolaModalLabel">Cadastrar Escola</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="mb-2">
+                        <label for="escolaName" class="form-label">Nome da Instituição</label>
+                        <input type="text" class="form-control" id="escolaName" required>
+                    </div>
+                    <div class="mb-2">
+                        <label for="escolaInep" class="form-label">INEP</label>
+                        <input type="text" class="form-control" id="escolaInep" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="escolaMunicipio" class="form-label">Município</label>
+                        <select class="form-select" id="escolaMunicipio" required>
+                            <option value="">Selecione o Município</option>
+                            <option value="1">Canindé</option>
+                            <option value="2">Caridade</option>
+                            <option value="3">General Sampaio</option>
+                            <option value="4">Itatira</option>
+                            <option value="5">Paramoti</option>
+                            <option value="6">Santa Quitéria</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="escolaLocalidade" class="form-label">Localidade</label>
+                        <select class="form-select" id="escolaLocalidade" required>
+                            <option value="">Selecione a Localidade</option>
+                            <option value="1">Urbana</option>
+                            <option value="2">Rural</option>
+                        </select>
+                    </div>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="submit" class="btn btn-primary">Enviar</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+    </main>
+</body>
+</html>
