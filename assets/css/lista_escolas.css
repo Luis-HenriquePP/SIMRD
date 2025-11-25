@@ -248,3 +248,17 @@ h2 {
     width:100%; 
     margin-bottom:8px; }
 }
+
+.container {
+    display: flex; 
+    gap: 20px;    
+    align-items: center
+}
+
+#componente{
+  width: 50%;
+}
+
+#serie{
+  width: 50%;
+}
