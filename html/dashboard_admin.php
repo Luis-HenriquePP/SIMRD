@@ -11,7 +11,6 @@
   <script src="../bootstrap/JS/jquery.min.js"></script>
   <link rel="stylesheet" href="../assets/css/dashboard_admin.css">
 </head>
-
 <body>
 
   <div id="sidebar" style="background-color: #4C8F5A;">
@@ -124,7 +123,6 @@
         </div>
       </div>
 
-
       <div class="row row-cols-1 row-cols-md-3 g-4 mb-4">
         <div class="col-sm-4">
           <div class="card h-100 shadow-lg text-center border-0" style="border-radius: 18px;">
@@ -157,9 +155,6 @@
         </div>
 
       </div>
-
-
-
 
       <div class="ranking-box mt-4">
         <div class="d-flex justify-content-center mb-4">

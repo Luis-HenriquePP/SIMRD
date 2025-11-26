@@ -10,9 +10,7 @@
   <link href="../bootstrap/CSS/bootstrap-icons.css" rel="stylesheet">
   <script src="../bootstrap/JS/jquery.min.js"></script>
   <link rel="stylesheet" href="../assets/css/dashboard_escola.css">
-
 </head>
-
 <body>
 
 <div id="sidebar" style="background-color: #4C8F5A;">
@@ -159,9 +157,6 @@
 
 </div>
 
-
-
-
       <div class="ranking-box mt-4">
         <div class="d-flex justify-content-center mb-4">
             <form class="d-flex align-items-center flex-wrap gap-3">
@@ -180,13 +175,10 @@
                     <option value="2">Matemática</option>
                 </select>
             </form>
-            
-            
         </div>
         <div class="mt-3 mb-3 justify-content-end d-flex">
         <button class="btn btn-success">Filtrar</button>
         </div>
-
         
         <table class="table">
             <thead>
@@ -224,6 +216,4 @@ function toggleSidebar() {
   }
 }
 </script>
-
-
 </html>
