@@ -1,5 +1,16 @@
+<?php
+session_start();
+$error = '';
+
+if (isset($_SESSION['login_error'])) {
+  $error = $_SESSION['login_error'];
+  unset($_SESSION['login_error']);
+}
+?>
+
 <!DOCTYPE html>
 <html lang="pt-bt">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,6 +21,7 @@
   <link rel="stylesheet" href="../bootstrap/CSS/bootstrap.min.css">
   <script src="../boostrap/JS/bootstrap.bundle.min.js"></script>
 </head>
+
 <body>
   <nav class="navbar bg-body-tertiary">
     <div class="d-flex">
@@ -24,19 +36,25 @@
     <div class="container-fluid " id="login-box" style="width:50%">
       <h1 class="h1" id="tit" style="font-weight: bold;">Crede</h1>
       <div class="row d-flex justify-content-center align-items-center" id="coluna">
-        <form method="POST" action="../php/Adm.php" id="loginForm">
-           <div class="form-group">
-             <label for="usuario">Usuário:</label><br>
-             <input class="form-control-md" type="text" name="usuario"  required placeholder="Digite seu usuário" />
-           </div>
-           <br>
-           <div class="form-group">
-             <label for="senha">Senha:</label><br>
-             <input class="form-control-md" type="password" name="senha"  placeholder="Digite sua senha" />
-           </div>
-           <button type="submit">Entrar</button>
-         </form>
+        <form method="POST" action="../php/crede.php" id="loginForm">
+          <div class="form-group">
+            <label for="usuario">Usuário:</label><br>
+            <input class="form-control-md" type="text" name="usuario" required placeholder="Digite seu usuário" />
           </div>
-  <img src="../assets/img/crede7.png" style="width: 120px;">
+          <br>
+          <div class="form-group">
+            <label for="senha">Senha:</label><br>
+            <input class="form-control-md" type="password" name="senha" placeholder="Digite sua senha" />
+          </div>
+          <button type="submit">Entrar</button>
+        </form>
+        <?php if (!empty($error)): ?>
+          <div style="color: red; margin-top: 10px; text-align: center;">
+            <?php echo htmlspecialchars($error); ?>
+          </div>
+        <?php endif; ?>
+      </div>
+      <img src="../assets/img/crede7.png" style="width: 120px;">
 </body>
+
 </html>

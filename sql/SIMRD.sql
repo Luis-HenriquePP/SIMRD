@@ -177,6 +177,7 @@ CREATE TABLE IF NOT EXISTS `SIMRD`.`Escolas` (
   `idEscolas` INT NOT NULL,
   `nome` VARCHAR(45) NULL,
   `inep` VARCHAR(45) NULL,
+  `senha` VARCHAR(45) NULL,
   `municipio` VARCHAR(45) NULL,
   `localidade` VARCHAR(45) NULL,
   `tarefa` INT NULL,
