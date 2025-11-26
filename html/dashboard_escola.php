@@ -4,15 +4,13 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Dashboard Administrativo</title>
+  <title>SIMRD</title>
   <link href="../bootstrap/CSS/bootstrap.min.css" rel="stylesheet">
   <script src="../bootstrap/JS/bootstrap.bundle.min.js"></script>
   <link href="../bootstrap/CSS/bootstrap-icons.css" rel="stylesheet">
   <script src="../bootstrap/JS/jquery.min.js"></script>
-  <link rel="stylesheet" href="../assets/css/dashboard_escola.css">
-
+  <link rel="stylesheet" href="../assets/css/dashboard_admin.css">
 </head>
-
 <body>
 
 <div id="sidebar" style="background-color: #4C8F5A;">
@@ -37,7 +35,7 @@
 
 <main id="main">
     <div class="container-fluid">
-      <h2>Dashboard Escola</h2>
+      <h2>Dashboard Admin</h2>
       
       <div class="row mb-4 mt-4 top-buttons">
         <div class="col justify-content-center d-flex gap-2">
@@ -127,37 +125,133 @@
 
 
 <div class="row row-cols-1 row-cols-md-3 g-4 mb-4">
-  <div class="col-sm-4">
-    <div class="card h-100 shadow-lg text-center border-0" style="border-radius: 18px;">
-      <div class="card-body p-4">
-        <h5 class="card-title fw-bold mb-3"> Pendente </h5>
-        <div class="display-4 mb-2 fw-bold text-warning"> 0 </div>
-        <p class="card-text text-muted">Planejamentos Pendentes</p>
-      </div>
-    </div>
-  </div>
-
-  <div class="col-sm-4">
-    <div class="card h-100 shadow-lg text-center border-0" style="border-radius: 18px;">
-      <div class="card-body p-4">
-        <h5 class="card-title fw-bold mb-3"> Em Execução </h5>
-        <div class="display-4 mb-2 fw-bold text-primary"> 20 </div>
-        <p class="card-text text-muted">Planejamentos em Execução</p>
-      </div>
-    </div>
-  </div>
-
-  <div class="col-sm-4">
-    <div class="card h-100 shadow-lg text-center border-0" style="border-radius: 18px;">
-      <div class="card-body p-4">
-        <h5 class="card-title fw-bold mb-3"> Concluídos</h5>
-        <div class="display-4 mb-2 fw-bold text-success">0</div>
-        <p class="card-text text-muted">Planejamentos Concluídos</p>
-      </div>
-    </div>
-  </div>
-
+    <button class="col-auto" style="background:none; border:none;" data-bs-toggle="modal" data-bs-target="#PlanosPendentesModal">
+        <div class="card h-100 shadow-lg text-center border-0" style="border-radius: 18px;">
+            <div class="card-body p-4">
+                <h5 class="card-title fw-bold mb-3"> Pendente </h5>
+                <div class="display-4 mb-2 fw-bold text-warning"> 0 </div>
+                <p class="card-text text-muted">Planejamentos Pendentes</p>
+            </div>
+        </div>
+    </button>
+    <button class="col-auto" style="background:none; border:none;" data-bs-toggle="modal" data-bs-target="#PlanosEmProcessoModal">
+        <div class="card h-100 shadow-lg text-center border-0" style="border-radius: 18px;">
+            <div class="card-body p-4">
+                <h5 class="card-title fw-bold mb-3"> Em Execução </h5>
+                <div class="display-4 mb-2 fw-bold text-primary"> 20 </div>
+                <p class="card-text text-muted">Planejamentos em Execução</p>
+            </div>
+        </div>
+    </button>
+    <button class="col-auto" style="background:none; border:none;" data-bs-toggle="modal" data-bs-target="#PlanosConcluidosModal">
+        <div class="card h-100 shadow-lg text-center border-0" style="border-radius: 18px;">
+            <div class="card-body p-4">
+                <h5 class="card-title fw-bold mb-3"> Concluídos</h5>
+                <div class="display-4 mb-2 fw-bold text-success">0</div>
+                <p class="card-text text-muted">Planejamentos Concluídos</p>
+            </div>
+        </div>
+    </button>
 </div>
+
+ <div class="modal fade" id="PlanosPendentesModal" tabindex="-1" aria-labelledby="PlanoPedentesModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="PlanoPedentesModalLabel">Planos Pendentes</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <table class="table">
+            <thead>
+              <tr>
+                <th>Escola</th>
+                <th>Plano</th>
+                <th>Componente</th>
+                <th>Responsável</th>
+                <th>Data de Inicio</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>EEF Carmozina Bittencourt de Pinho</td>
+                <td>Para suprir a carência em operações matemá...</td>
+                <td>Matematica</td>
+                <td>Olavo de Carvalho</td>
+                <td>01/01/2024</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+ </div>
+
+ <div class="modal fade" id="PlanosEmProcessoModal" tabindex="-1" aria-labelledby="PlanoEmProcessoModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="PlanoEmProcessoModalLabel">Planos Em Processo</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <table class="table">
+            <thead>
+              <tr>
+                <th>Escola</th>
+                <th>Plano</th>
+                <th>Componente</th>
+                <th>Responsável</th>
+                <th>Data de Inicio</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>EEF Carmozina Bittencourt de Pinho</td>
+                <td>Para suprir a carência em operações matemá...</td>
+                <td>Matematica</td>
+                <td>Olavo de Carvalho</td>
+                <td>01/01/2024</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+ </div>
+
+ <div class="modal fade" id="PlanosConcluidosModal" tabindex="-1" aria-labelledby="PlanoConcluidosModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="PlanoConcluidosModalLabel">Planos Concluídos</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <table class="table">
+            <thead>
+              <tr>
+                <th>Escola</th>
+                <th>Plano</th>
+                <th>Componente</th>
+                <th>Responsável</th>
+                <th>Data de Inicio</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>EEF Carmozina Bittencourt de Pinho</td>
+                <td>Para suprir a carência em operações matemá...</td>
+                <td>Matematica</td>
+                <td>Olavo de Carvalho</td>
+                <td>01/01/2024</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+ </div>
 
 
 
@@ -191,17 +285,19 @@
         <table class="table">
             <thead>
             <tr>
-                <th>Status</th>
+                <th>Secretaria</th>
+                <th>Município</th>
+                <th>Escola</th>
                 <th>Plano</th>
-                <th>Componente</th>
                 <th>Responsável</th>
             </tr>
             </thead>
             <tbody>
             <tr>
-                <td>Realizada</td>
+                <td>Secretaria Municipal da Educação</td>
+                <td>Caridade</td>
+                <td>EEF Carmozina Bittencourt de Pinho</td>
                 <td>Para suprir a carência em operações matemá...</td>
-                <td>Matematica</td>
                 <td>Olavo de Carvalho</td>
             </tr>
             </tbody>
