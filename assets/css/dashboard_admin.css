@@ -217,3 +217,7 @@ body {
 .dashboard, .escola, .relatorio, .sair {
   width: 20px;
 }
+
+.logo{
+  width: 70%;
+}

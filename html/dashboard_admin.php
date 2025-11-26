@@ -13,11 +13,10 @@
 </head>
 <body>
 
-  <div id="sidebar" style="background-color: #4C8F5A;">
-
+  <div id="sidebar">
     <div>
       <button class="toggle-btn" onclick="toggleSidebar()">
-        <img src="../assets/img/SIMRD.png" alt="SIMRD" style="width:90px;">
+        <img class="logo" src="../assets/img/SIMRD.png" alt="SIMRD">
       </button>
 
       <ul class="nav flex-column">
