@@ -21,10 +21,10 @@
     </button>
 
     <ul class="nav flex-column">
-      <li><a href="#"><img src="../assets/img/dashboard.png" style="width: 25px;" alt=""> <span class="label-text">Dashboard</span></a></li>
-      <li><a href="#"><img src="../assets/img/secretaria.png" style="width: 25px;" alt=""> <span class="label-text">Secretaria</span></a></li>
-      <li><a href="#"><img src="../assets/img/escola.png" style="width: 25px;" alt=""> <span class="label-text">Escola</span></a></li>
-      <li><a href="#"><img src="../assets/img/relatorio.png" style="width: 25px;" alt=""> <span class="label-text">Relatórios</span></a></li>
+      <li><a href="../html/dashboard_crede.php"><img src="../assets/img/dashboard.png" style="width: 25px;" alt=""> <span class="label-text">Dashboard</span></a></li>
+      <li><a href="../html/lista_secretarias.html"><img src="../assets/img/secretaria.png" style="width: 25px;" alt=""> <span class="label-text">Secretaria</span></a></li>
+      <li><a href="../html/lista_escolas.html"><img src="../assets/img/escola.png" style="width: 25px;" alt=""> <span class="label-text">Escola</span></a></li>
+      <li><a href="../html/relatorios.html"><img src="../assets/img/relatorio.png" style="width: 25px;" alt=""> <span class="label-text">Relatórios</span></a></li>
     </ul>
   </div>
 
@@ -68,12 +68,12 @@
                                     <option value="6">Santa Quitéria</option>
                                 </select>
                             </div>
-                            <div class="mb-3">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                            <button type="submit" class="btn btn-primary">Enviar</button>
-                            </div>
                         </form>
                     </div>
+                    <div class="modal-footer">
+                <button type="button" class="btn btn-secondary me-auto" data-bs-dismiss="modal">Cancelar</button>
+                <button type="submit" class="btn btn-primary" form="seuFormularioID">Enviar</button>
+               </div>
                 </div>
             </div>
         </div>
@@ -115,10 +115,13 @@
                             <option value="2">Rural</option>
                         </select>
                     </div>
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                    <button type="submit" class="btn btn-primary">Enviar</button>
+                    
                 </form>
             </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary me-auto" data-bs-dismiss="modal">Cancelar</button>
+                <button type="submit" class="btn btn-primary" form="seuFormularioID">Enviar</button>
+               </div>
         </div>
     </div>
   </div>
