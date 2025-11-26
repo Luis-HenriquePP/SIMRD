@@ -86,18 +86,18 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form>
+                <form method="POST" action="../php/Cadescola.php">
                     <div class="mb-2">
                         <label for="escolaName" class="form-label">Nome da Instituição</label>
-                        <input type="text" class="form-control" id="escolaName" required>
+                        <input type="text" class="form-control" id="escolaName" required name="nome">
                     </div>
                     <div class="mb-2">
                         <label for="escolaInep" class="form-label">INEP</label>
-                        <input type="text" class="form-control" id="escolaInep" required>
+                        <input type="text" class="form-control" id="escolaInep" required name="inep">
                     </div>
                     <div class="mb-3">
                         <label for="escolaMunicipio" class="form-label">Município</label>
-                        <select class="form-select" id="escolaMunicipio" required>
+                        <select class="form-select" id="escolaMunicipio" required name="municipio">
                             <option value="">Selecione o Município</option>
                             <option value="1">Canindé</option>
                             <option value="2">Caridade</option>
@@ -109,14 +109,14 @@
                     </div>
                     <div class="mb-3">
                         <label for="escolaLocalidade" class="form-label">Localidade</label>
-                        <select class="form-select" id="escolaLocalidade" required>
+                        <select class="form-select" id="escolaLocalidade" required name="localidade">
                             <option value="">Selecione a Localidade</option>
                             <option value="1">Urbana</option>
                             <option value="2">Rural</option>
                         </select>
                     </div>
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                    <button type="submit" class="btn btn-primary">Enviar</button>
+                    <input type="submit" class="btn btn-primary" value="Enviar">
                 </form>
             </div>
         </div>
