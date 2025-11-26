@@ -1,6 +1,9 @@
 <?php
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
 session_start();
-require_once 'conexao.php';
+require_once '../php/connect.php';
 
 $usuario = $_POST['usuario'] ?? '';
 $senha = $_POST['senha'] ?? '';
@@ -8,19 +11,19 @@ $tipo = $_POST['tipo'] ?? '';
 
 switch ($tipo) {
     case 'crede':
-        $Tabela = 'Crede';
+        $Tabela = 'Credes';
         $Campo_usuario = 'usuario';
         $Campo_senha = 'senha';
         $Redirect = '../html/dashboard_admin.php';
         break;
     case 'secretaria':
-        $Tabela = 'Secretaria';
+        $Tabela = 'Secretarias';
         $Campo_usuario = 'usuario';
         $Campo_senha = 'senha';
         $Redirect = '../html/dashboard_sec.php';
         break;
     case 'escola':
-        $Tabela = 'Escola';
+        $Tabela = 'Escolas';
         $Campo_usuario = 'inep';
         $Campo_senha = 'senha';
         $Redirect = '../html/dashboard_escola.php';
@@ -36,10 +39,10 @@ $stmt -> execute();
 $user = $stmt -> fetch(PDO::FETCH_ASSOC);
 
 if ($user) {
-     if ($senha === $user[$campo_senha]) {
+     if ($senha === $user[$Campo_senha]) {
         $_SESSION['usuario'] = $usuario;
         $_SESSION['tipo'] = $tipo;
-        header("Location: $redirect");
+        header("Location: $Redirect");
         exit;
     } else {
         $_SESSION['login_error'] = 'Senha incorreta.';
