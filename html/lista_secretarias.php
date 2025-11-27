@@ -31,10 +31,10 @@
      <span class="brand-text"></span>
    </button>
    <ul class="nav flex-column">
-    <li><a href=""><i><img src="" class="dashboard"></i> <span class="label-text">Dashboard</span></a></li>
-     <li><a href=""><i><img src="" class="escola"></i> <span class="label-text">Escolas</span></a></li>
-     <li><a href=""><i><img src="" class="secretaria"></i> <span class="label-text">Secretarias</span></a></li>
-     <li><a href=""><i><img src="" class="relatorio"></i> <span class="label-text">Relatórios</span></a></li>
+    <li><a href="../html/dashboard_crede.php"><i><img src="" class="dashboard"></i> <span class="label-text">Dashboard</span></a></li>
+     <li><a href="../html/lista_escolas.html"><i><img src="" class="escola"></i> <span class="label-text">Escolas</span></a></li>
+     <li><a href="../html/lista_secretarias.html"><i><img src="" class="secretaria"></i> <span class="label-text">Secretarias</span></a></li>
+     <li><a href="../html/lista_relatorios_admin.html"><i><img src="" class="relatorio"></i> <span class="label-text">Relatórios</span></a></li>
     </ul>
   </div>
   <ul class="nav flex-column bottom-nav">
