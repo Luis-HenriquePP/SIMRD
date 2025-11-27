@@ -1,3 +1,13 @@
+<?php
+session_start();
+require_once '../php/connect.php';
+
+$sql = "SELECT * FROM Escolas ORDER BY idEscolas DESC";
+$result = $pdo -> query($sql);
+
+
+?>
+
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -45,17 +55,20 @@
        <th class="th2">Localidade</th>
        <th class="th1">Tarefas</th>
      </tr>
-     <tr>
-      <td>EEEP Francisco Paiva Tavares</td>
-      <td>23259493</td>
-      <td>Caridade</td>
-      <td>Zona Urbana</td>
-      <td>
-       
-      </td>
-     </tr>
    </thead>
    <br>
+   <tbody>
+    <?php 
+    while($escola_data = $result -> fetch(PDO::FETCH_ASSOC)){
+      echo '<tr>';
+      echo '<td>' . $escola_data['nome'] . '</td>';
+      echo '<td>' . $escola_data['inep'] . '</td>';
+      echo '<td>' . $escola_data['municipio'] . '</td>';
+      echo '<td>' . $escola_data['localidade'] . '</td>';
+      echo '<td>' . 'Sem tarefas cadastradas' . '</td>';
+    }
+     ?>
+   </tbody>
  </table>
 
  </main>
