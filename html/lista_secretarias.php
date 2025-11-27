@@ -1,3 +1,11 @@
+<?php
+  session_start();
+  require_once '../php/connect.php';
+
+  $sql = "SELECT * FROM Secretarias ORDER BY idSecretarias DESC";
+  $result = $pdo -> query($sql);
+
+?>
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -42,9 +50,20 @@
      <tr class="tr">
        <th class="th">Nome</th>
        <th class="th1">Município</th>
+       <th class="th">Acesso</th>
      </tr>
    </thead>
    <br>
+   <tdoby>
+    <?php 
+    while($sec_data = $result -> fetch(PDO::FETCH_ASSOC)){
+      echo '<tr>';
+      echo '<td>' . $sec_data['usuario'] . '</td>';
+      echo '<td>' . $sec_data['municipio'] . '</td>';
+      echo '<td>' . $sec_data['senha'] . '</td>';
+    }
+    ?>
+   </tdoby>
  </table>
  </main>
 </body>
