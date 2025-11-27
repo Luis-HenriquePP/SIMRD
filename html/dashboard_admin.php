@@ -50,14 +50,14 @@
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-              <form>
+              <form method="POST" action="../php/Cadsec.php">
                 <div class="mb-3">
                   <label for="secretariaNome" class="form-label">Nome da Instituição</label>
-                  <input type="text" class="form-control" id="secretariaName" required>
+                  <input type="text" class="form-control" id="secretariaName" required name="usuario">
                 </div>
                 <div class="mb-3">
                   <label for="secretariaMunicípio" class="form-label">Município</label>
-                  <select class="form-select" id="secretariaMunicipio" required>
+                  <select class="form-select" id="secretariaMunicipio" required name="municipio">
                     <option value="">Selecione o Município</option>
                     <option value="1">Canindé</option>
                     <option value="2">Caridade</option>
@@ -69,7 +69,7 @@
                 </div>
                 <div class="mb-3">
                   <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                  <button type="submit" class="btn btn-primary">Enviar</button>
+                  <input type="submit" class="btn btn-primary" value="Enviar">
                 </div>
               </form>
             </div>
