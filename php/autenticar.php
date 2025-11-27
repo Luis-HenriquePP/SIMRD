@@ -14,7 +14,7 @@ switch ($tipo) {
         $Tabela = 'Credes';
         $Campo_usuario = 'usuario';
         $Campo_senha = 'senha';
-        $Redirect = '../html/dashboard_admin.php';
+        $Redirect = '../html/dashboard_crede.php';
         break;
     case 'secretaria':
         $Tabela = 'Secretarias';
