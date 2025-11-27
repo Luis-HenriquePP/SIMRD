@@ -71,11 +71,11 @@
     while($tarefa_data = $result -> fetch(PDO::FETCH_ASSOC)){
       echo '<tr>';
       echo '<td>' . $tarefa_data['nome'] ?? '' . '</td>';
-      echo '<td>' . $tarefa_data['responsavel'] ?? '' . '</td>';
-      echo '<td>' . $tarefa_data['componente'] ?? '' . '</td>';
       echo '<td>' . $tarefa_data['serie'] ?? '' . '</td>';
-      echo '<td>' . $tarefa_data['status'] ?? '' . '</td>';
+      echo '<td>' . $tarefa_data['componente'] ?? '' . '</td>';
       echo '<td>' . $tarefa_data['data_inicial'] ?? '' . '</td>';
+      echo '<td>' . $tarefa_data['responsavel'] ?? '' . '</td>';
+      echo '<td>' . $tarefa_data['status'] ?? '' . '</td>';
     }
     ?>    
    </tbody>
