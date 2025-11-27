@@ -1,3 +1,12 @@
+<?php 
+  session_start();
+  require_once '../php/connect.php';
+
+  $sql = "SELECT * FROM Tarefa ORDER BY idTarefa DESC";
+  $result = $pdo-> query($sql);
+?>
+
+
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -55,15 +64,21 @@
        <th class="th3">Responsável</th>
        <th class="th2">Status</th>
      </tr>
-     <tr>
-      <td>Matemática para a vida</td>
-      <td>1°</td>
-      <td>Matemática</td>
-      <td>17/09/2025</td>
-      <td>Assis Uchôa</td>
-     </tr>
    </thead>
    <br>
+   <tbody>
+    <?php 
+    while($tarefa_data = $result -> fetch(PDO::FETCH_ASSOC)){
+      echo '<tr>';
+      echo '<td>' . $tarefa_data['nome'] ?? '' . '</td>';
+      echo '<td>' . $tarefa_data['responsavel'] ?? '' . '</td>';
+      echo '<td>' . $tarefa_data['componente'] ?? '' . '</td>';
+      echo '<td>' . $tarefa_data['serie'] ?? '' . '</td>';
+      echo '<td>' . $tarefa_data['status'] ?? '' . '</td>';
+      echo '<td>' . $tarefa_data['data_inicial'] ?? '' . '</td>';
+    }
+    ?>    
+   </tbody>
  </table>
  </main>
 </body>
