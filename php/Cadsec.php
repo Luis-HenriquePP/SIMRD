@@ -13,7 +13,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
 $stmt = $pdo-> prepare("INSERT INTO Secretarias (usuario, municipio) VALUES (?, ?)");
     try{
         $stmt -> execute([$usuario, $municipio ]);
-        header('Location: ../html/dashboard_admin.php?sucesso=1');
+        header('Location: ../html/dashboard_crede.php?sucesso=1');
         exit();
     }catch(PDOException $e){
         die('Erro ao cadastrar escola' . $e -> getMessage());

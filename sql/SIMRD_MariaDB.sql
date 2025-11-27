@@ -35,6 +35,7 @@ CREATE TABLE IF NOT EXISTS `Secretarias` (
   `idSecretarias` INT NOT NULL AUTO_INCREMENT,
   `usuario` VARCHAR(45) NULL,
   `senha` VARCHAR(255) NULL,
+  `municipio` VARCHAR(45) NULL,
   PRIMARY KEY (`idSecretarias`)
 ) ENGINE=InnoDB;
 

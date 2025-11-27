@@ -43,6 +43,9 @@
           <button type="button" class="btn btn-success mb-3" data-bs-toggle="modal" data-bs-target="#CadastrarPlanoModal">Cadastrar Plano</button>
         </div>
       </div>
+
+
+
       <div class="modal fade" id="CadastrarPlanoModal" tabindex="-1" aria-labelledby="CadastrarPlanoModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-xl">
         <div class="modal-content">
@@ -51,7 +54,7 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form>
+                <form method="POST" action="../php/Cadplanos.php">
                     <div class="row">
                         <div class="col-md-4 mb-3">
                             <label for="AvaliaçãoFormativa" class="form-label">Avaliação Formativa</label>

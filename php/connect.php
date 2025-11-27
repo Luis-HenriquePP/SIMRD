@@ -1,5 +1,5 @@
 <?php
-$pdo = new PDO('mysql:host=localhost;dbname=SIMRD', 'root', 'cr701201');
+$pdo = new PDO('mysql:host=localhost;dbname=SIMRD', 'root', '');
 try{
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     $pdo -> setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
