@@ -10,7 +10,6 @@
   <link href="../bootstrap/CSS/bootstrap-icons.css" rel="stylesheet">
   <script src="../bootstrap/JS/jquery.min.js"></script>
   <link rel="stylesheet" href="../assets/css/dashboard_sec.css">
-
 </head>
 <body>
 

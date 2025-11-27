@@ -3,13 +3,13 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Tarefas - Escola</title>
+<title>Escolas - Secretaria</title>
 
 <link href="../bootstrap/CSS/bootstrap.min.css" rel="stylesheet">
 <link rel="stylesheet" href="../bootstrap/CSS/bootstrap-icons.css">
 <script src="../bootstrap/JS/bootstrap.bundle.min.js"></script>
 <script src="../bootstrap/JS/jquery.min.js"></script>
-<link rel="stylesheet" href="../assets/css/lista_tarefa.css">
+<link rel="stylesheet" href="../assets/css/lista_escolas.css">
 </head>
 <body>
 <div id="overlay" onclick="closeMobileSidebar()"></div>
@@ -17,7 +17,6 @@
  <i><img src="../assets/img/menu.png"></i>
 </button>
 <div id="sidebar" style="background-color: #4C8F5A;">
-
  <div>
    <button class="toggle-btn" onclick="toggleSidebar()">
      <img src="../assets/img/SIMRD.png" alt="SACC" style="width:90px;">
@@ -25,7 +24,7 @@
    </button>
    <ul class="nav flex-column">
     <li><a href=""><i><img src="" class="dashboard"></i> <span class="label-text">Dashboard</span></a></li>
-     <li><a href=""><i><img src="" class="tarefas"></i> <span class="label-text">Tarefas</span></a></li>
+     <li><a href=""><i><img src="" class="escola"></i> <span class="label-text">Escolas</span></a></li>
      <li><a href=""><i><img src="" class="relatorio"></i> <span class="label-text">Relatórios</span></a></li>
     </ul>
   </div>
@@ -34,37 +33,31 @@
   </ul>
 </div>
 <main id="main">
- <h2>Tarefas</h2>
+ <h2>Escolas</h2>
  <br>
  <hr><br>
-
-   <div class="button">
-    <form>
-      <input type="text" placeholder="Pesquisar trabalho">
-      <button type="submit">Pesquisar</button>
-    </form>
-   </div>
-
  <table class="table table-striped table-bordered" id="workTable">
    <thead class=" table-success">
      <tr class="tr">
-       <th class="th1">Tarefa</th>
-       <th class="th2">Série</th>
-       <th class="th3">Componente</th>
-       <th class="th2">Data inicial</th>
-       <th class="th3">Responsável</th>
-       <th class="th2">Status</th>
+       <th class="th">Nome</th>
+       <th class="th1">INEP</th>
+       <th class="th2">Município</th>
+       <th class="th2">Localidade</th>
+       <th class="th1">Tarefas</th>
      </tr>
      <tr>
-      <td>Matemática para a vida</td>
-      <td>1°</td>
-      <td>Matemática</td>
-      <td>17/09/2025</td>
-      <td>Assis Uchôa</td>
+      <td>EEEP Francisco Paiva Tavares</td>
+      <td>23259493</td>
+      <td>Caridade</td>
+      <td>Zona Urbana</td>
+      <td>
+       
+      </td>
      </tr>
    </thead>
    <br>
  </table>
+
  </main>
 </body>
 </html>

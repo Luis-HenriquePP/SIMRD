@@ -6,6 +6,24 @@ body {
 h2 { 
   margin-bottom:20px; }
 
+
+
+/* Filtros */
+.filter-group { 
+  display:flex; 
+  gap:15px; 
+  margin-bottom:20px; 
+  flex-wrap: wrap;
+  width: 100%; 
+  justify-content: center; 
+  height: 40px;
+}
+
+.filter-group select { 
+  padding:3px 6px; 
+  border-radius:100px;
+  border:1px solid #ccc; }
+  
 /* Tabela */
 .table { 
   border-radius:5px; 
@@ -29,6 +47,50 @@ h2 {
 .table thead { 
   background:#4C8F5A; 
   color:white; }
+
+.download-btn { 
+  background:#2c7a3e; 
+  color:white; 
+  border:none;
+  padding:6px 10px; 
+  border-radius:4px; 
+  cursor:pointer; }
+
+.download-btn:hover { 
+  background:#1e5e2b; }
+
+/* Botões de relatório */
+.report-buttons { 
+  text-align:center; 
+  margin-top:15px; 
+}
+
+.report-buttons button { 
+  margin:5px; 
+  padding:8px 15px; 
+  border:none; 
+  border-radius:4px; 
+  background:#4C8F5A; 
+  color:white; 
+  cursor:pointer;
+  border-radius: 50px;
+ }
+
+.report-buttons button:hover { 
+  background:#6aa347; }
+
+/* Ícone download individual */
+.download-icon { 
+  display:inline-block; 
+  width:24px; 
+  height:24px; 
+  background:#2c7a3e; 
+  color:white; 
+  border-radius:4px; 
+  text-align:center; 
+  line-height:24px; 
+  cursor:pointer; }
+.download-icon:hover { background:#1e5e2b; }
 
 /* Sidebar e main layout */
 :root {
@@ -191,9 +253,23 @@ h2 {
     gap: 20px;    
     align-items: center
 }
-.th{
-    width: 30%;
+
+#componente{
+  width: 50%;
 }
+
+#serie{
+  width: 50%;
+}
+
+#escola{
+  width: 50%;
+}
+
+.th{
+  width: 27%;
+}
+
 .th1{
   width: 10%;
 }
