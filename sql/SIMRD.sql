@@ -29,6 +29,7 @@ CREATE TABLE IF NOT EXISTS `Secretarias` (
   `idSecretarias` INT NOT NULL AUTO_INCREMENT,
   `usuario` VARCHAR(45) NULL,
   `senha` VARCHAR(255) NULL,
+  `municipio` VARCHAR(45) NULL,
   PRIMARY KEY (`idSecretarias`)
 ) ENGINE=InnoDB;
 
@@ -40,7 +41,13 @@ CREATE TABLE IF NOT EXISTS `Status` (
   `nome` VARCHAR(45) NULL,
   PRIMARY KEY (`idStatus`)
 ) ENGINE=InnoDB;
-
+INSERT INTO `status`(`idStatus`, `nome`) VALUES (0, 'Pendente');
+INSERT INTO `status`(`idStatus`, `nome`) VALUES (1, 'Em execução');
+INSERT INTO `status`(`idStatus`, `nome`) VALUES (2, 'Concluídos');
+INSERT INTO `status`(`idStatus`, `nome`) VALUES (3, 'Planejado');
+INSERT INTO `status`(`idStatus`, `nome`) VALUES (4, 'Replanejado');
+INSERT INTO `status`(`idStatus`, `nome`) VALUES (5, 'Realizada no prazo');
+INSERT INTO `status`(`idStatus`, `nome`) VALUES (6, 'Não realizada');
 -- -----------------------------------------------------
 -- Table `Componente`
 -- -----------------------------------------------------
@@ -49,7 +56,8 @@ CREATE TABLE IF NOT EXISTS `Componente` (
   `nome` VARCHAR(45) NULL,
   PRIMARY KEY (`idComponente`)
 ) ENGINE=InnoDB;
-
+INSERT INTO `componente` (`idComponente`, `nome`) VALUES (NULL, 'Língua Portuguesa');
+INSERT INTO `componente` (`idComponente`, `nome`) VALUES (NULL, 'Português');
 -- -----------------------------------------------------
 -- Table `Serie`
 -- -----------------------------------------------------
@@ -58,6 +66,15 @@ CREATE TABLE IF NOT EXISTS `Serie` (
   `nome` VARCHAR(45) NULL,
   PRIMARY KEY (`idSerie`)
 ) ENGINE=InnoDB;
+INSERT INTO `serie`(`idSerie`, `nome`) VALUES ( NULL,'1°');
+INSERT INTO `serie`(`idSerie`, `nome`) VALUES ( NULL,'2°');
+INSERT INTO `serie`(`idSerie`, `nome`) VALUES ( NULL,'3°');
+INSERT INTO `serie`(`idSerie`, `nome`) VALUES ( NULL,'4°');
+INSERT INTO `serie`(`idSerie`, `nome`) VALUES ( NULL,'5°');
+INSERT INTO `serie`(`idSerie`, `nome`) VALUES ( NULL,'6°');
+INSERT INTO `serie`(`idSerie`, `nome`) VALUES ( NULL,'7°');
+INSERT INTO `serie`(`idSerie`, `nome`) VALUES ( NULL,'8°');
+INSERT INTO `serie`(`idSerie`, `nome`) VALUES ( NULL,'9°');
 
 -- -----------------------------------------------------
 -- Table `Tarefa`
