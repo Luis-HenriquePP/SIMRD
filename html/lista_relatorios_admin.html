@@ -12,27 +12,24 @@
 <link rel="stylesheet" href="../assets/css/lista_relatorio.css">
 </head>
 <body>
-<div id="overlay" onclick="closeMobileSidebar()"></div>
-<button id="mobile-toggle" onclick="toggleSidebar()">
- <i><img src="../assets/img/menu.png"></i>
-</button>
 <div id="sidebar">
- <div>
-   <button class="toggle-btn" onclick="toggleSidebar()">
-     <img src="../assets/img/SIMRD.png" alt="SACC" style="width:90px;">
-     <span class="brand-text"></span>
-   </button>
-   <ul class="nav flex-column">
-    <li><a href="../html/dashboard_admin.php"><i><img src="" class="dashboard"></i> <span class="label-text">Dashboard</span></a></li>
-     <li><a href="../html/lista_escolas_admin.php"><i><img src="" class="escola"></i> <span class="label-text">Escolas</span></a></li>
-     <li><a href="../html/lista_secretarias.php"><i><img src="" class="secretaria"></i> <span class="label-text">Secretarias</span></a></li>
-     <li><a href="../html/lista_relatorios_admin.html"><i><img src="" class="relatorio"></i> <span class="label-text">Relatórios</span></a></li>
+    <div>
+      <button class="toggle-btn" onclick="toggleSidebar()">
+        <img class="logo" src="../assets/img/SIMRD.png" alt="SIMRD">
+      </button>
+
+      <ul class="nav flex-column">
+        <li><a href="../html/dashboard_admin.php"><img src="../assets/img/dashboard.png" style="width: 25px;" alt=""> <span class="label-text">Dashboard</span></a></li>
+        <li><a href="../html/lista_secretarias.php"><img src="../assets/img/secretaria.png" style="width: 25px;" alt=""> <span class="label-text">Secretaria</span></a></li>
+        <li><a href="../html/lista_escolas_admin.php"><img src="../assets/img/escola.png" style="width: 25px;" alt=""> <span class="label-text">Escola</span></a></li>
+        <li><a href="../html/lista_relatorios_admin.html"><img src="../assets/img/relatorio.png" style="width: 25px;" alt=""> <span class="label-text">Relatórios</span></a></li>
+      </ul>
+    </div>
+
+    <ul class="nav flex-column bottom-nav">
+      <li><a href="../php/logout.php"><img src="../assets/img/logout.png" class="sair" style="width:25px;" alt=""> <span class="label-text">Sair</span></a></li>
     </ul>
   </div>
-  <ul class="nav flex-column bottom-nav">
-    <li><a href=""><img src="" class="sair"> <span class="label-text">Sair</span></a></li>
-  </ul>
-</div>
 <main id="main">
  <h2>Relatórios</h2>
  <br>
