@@ -243,7 +243,7 @@ $dados = $stmt->fetchAll(PDO::FETCH_ASSOC);
               ?>
               <tr>
                 <td><?= htmlspecialchars($campo['secretaria']) ?></td>
-                <td><?= htmlspecialchars($municipio) ?></td>
+                <td><?= htmlspecialchars($campo['municipio']) ?></td>
                 <td><?= htmlspecialchars($campo['escola']) ?></td>
                 <td><?= htmlspecialchars($campo['tarefa']) ?></td>
                 <td><?= htmlspecialchars($campo['responsavel']) ?></td>
