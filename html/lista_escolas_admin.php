@@ -29,7 +29,7 @@ $escolas = $sql->fetchAll(PDO::FETCH_ASSOC);
   <button id="mobile-toggle" onclick="toggleSidebar()">
     <i><img src="../assets/img/menu.png"></i>
   </button>
-  <div id="sidebar" style="background-color: #4C8F5A;">
+  <div id="sidebar">
     <div>
       <button class="toggle-btn" onclick="toggleSidebar()">
         <img src="../assets/img/SIMRD.png" alt="SACC" style="width:90px;">

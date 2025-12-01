@@ -26,7 +26,7 @@ switch ($tipo) {
         $Tabela = 'Escolas';
         $Campo_usuario = 'inep';
         $Campo_senha = 'senha';
-        $Redirect = '../html/dashboard_escolar.php';
+        $Redirect = '../html/dashboard_escola.php';
         break;
     default:
         die('Tipo de usuário inválido.');
