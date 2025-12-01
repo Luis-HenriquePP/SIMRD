@@ -28,8 +28,8 @@ require_once '../php/connect.php';
       <ul class="nav flex-column">
         <li><a href="../html/dashboard_admin.php"><img src="../assets/img/dashboard.png" style="width: 25px;" alt=""> <span class="label-text">Dashboard</span></a></li>
         <li><a href="../html/lista_secretarias.php"><img src="../assets/img/secretaria.png" style="width: 25px;" alt=""> <span class="label-text">Secretaria</span></a></li>
-        <li><a href="../html/lista_escolas.php"><img src="../assets/img/escola.png" style="width: 25px;" alt=""> <span class="label-text">Escola</span></a></li>
-        <li><a href="../html/lista_relatorios_crede.html"><img src="../assets/img/relatorio.png" style="width: 25px;" alt=""> <span class="label-text">Relatórios</span></a></li>
+        <li><a href="../html/lista_escolas_admin.php"><img src="../assets/img/escola.png" style="width: 25px;" alt=""> <span class="label-text">Escola</span></a></li>
+        <li><a href="../html/lista_relatorios_admin.html"><img src="../assets/img/relatorio.png" style="width: 25px;" alt=""> <span class="label-text">Relatórios</span></a></li>
       </ul>
     </div>
 
