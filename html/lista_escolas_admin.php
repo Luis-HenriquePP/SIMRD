@@ -36,7 +36,7 @@ $escolas = $sql->fetchAll(PDO::FETCH_ASSOC);
         <span class="brand-text"></span>
       </button>
       <ul class="nav flex-column">
-        <li><a href="../html/dashboard_crede.php"><i><img src="" class="dashboard"></i> <span class="label-text">Dashboard</span></a></li>
+        <li><a href="../html/dashboard_admin.php"><i><img src="" class="dashboard"></i> <span class="label-text">Dashboard</span></a></li>
         <li><a href="../html/lista_escolas_admin.php"><i><img src="" class="escola"></i> <span class="label-text">Escolas</span></a></li>
         <li><a href="../html/lista_secretarias.php"><i><img src="" class="secretaria"></i> <span class="label-text">Secretarias</span></a></li>
         <li><a href="../html/lista_relatorios_admin.html"><i><img src="" class="relatorio"></i> <span class="label-text">Relatórios</span></a></li>
