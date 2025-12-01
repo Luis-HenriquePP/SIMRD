@@ -26,20 +26,21 @@ $result = $pdo -> query($sql);
 <button id="mobile-toggle" onclick="toggleSidebar()">
  <i><img src="../assets/img/menu.png"></i>
 </button>
-<div id="sidebar">
- <div>
-   <button class="toggle-btn" onclick="toggleSidebar()">
-     <img src="../assets/img/SIMRD.png" alt="SACC" style="width:90px;">
-     <span class="brand-text"></span>
-   </button>
-   <ul class="nav flex-column">
-    <li><a href="../html/dashboard_sec.php"><i><img src="" class="dashboard"></i> <span class="label-text">Dashboard</span></a></li>
-     <li><a href="../html/lista_escolas_sec.php"><i><img src="" class="escola"></i> <span class="label-text">Escolas</span></a></li>
-     <li><a href="../html/lista_relatorios_sec.html"><i><img src="" class="relatorio"></i> <span class="label-text">Relatórios</span></a></li>
+<div id="sidebar" style="background-color: #4C8F5A;">
+  <div>
+    <button class="toggle-btn" onclick="toggleSidebar()">
+      <img src="../assets/img/SIMRD.png" alt="SIMRD" style="width:90px;">
+    </button>
+
+    <ul class="nav flex-column">
+      <li><a href="../html/dashboard_sec.php"><img src="../assets/img/dashboard.png" style="width: 25px;" alt=""> <span class="label-text">Dashboard</span></a></li>
+      <li><a href="../html/lista_escolas_sec.php"><img src="../assets/img/escola.png" style="width: 25px;" alt=""> <span class="label-text">Escolas</span></a></li>
+      <li><a href="../html/lista_relatorios_sec.html"><img src="../assets/img/relatorio.png" style="width: 25px;" alt=""> <span class="label-text">Relatórios</span></a></li>
     </ul>
   </div>
+
   <ul class="nav flex-column bottom-nav">
-    <li><a href=""><img src="" class="sair"> <span class="label-text">Sair</span></a></li>
+    <li><a href="../php/logout.php"><img src="../assets/img/logout.png" class="sair" style="width:25px;" alt=""> <span class="label-text">Sair</span></a></li>
   </ul>
 </div>
 <main id="main">
