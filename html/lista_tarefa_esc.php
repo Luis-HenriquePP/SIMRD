@@ -35,7 +35,7 @@
    <ul class="nav flex-column">
     <li><a href="../html/dashboard_escolar.php"><i><img src="" class="dashboard"></i> <span class="label-text">Dashboard</span></a></li>
      <li><a href="../html/lista_tarefa_esc.php"><i><img src="" class="tarefas"></i> <span class="label-text">Tarefas</span></a></li>
-     <li><a href="../html/lista_relatorios_esc.php"><i><img src="" class="relatorio"></i> <span class="label-text">Relatórios</span></a></li>
+     <li><a href="../html/lista_relatorios_esc.html"><i><img src="" class="relatorio"></i> <span class="label-text">Relatórios</span></a></li>
     </ul>
   </div>
   <ul class="nav flex-column bottom-nav">
