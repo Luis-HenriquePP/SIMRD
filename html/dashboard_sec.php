@@ -27,7 +27,7 @@
   </div>
 
   <ul class="nav flex-column bottom-nav">
-    <li><a href="#"><img src="../assets/img/logout.png" class="sair" style="width:25px;" alt=""> <span class="label-text">Sair</span></a></li>
+    <li><a href="../php/logout.php"><img src="../assets/img/logout.png" class="sair" style="width:25px;" alt=""> <span class="label-text">Sair</span></a></li>
   </ul>
 </div>
 
