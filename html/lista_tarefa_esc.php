@@ -82,5 +82,19 @@
    </tbody>
  </table>
  </main>
+ <script>
+  function toggleSidebar() {
+    const sidebar = document.getElementById("sidebar");
+    const main = document.getElementById("main");
+
+    if (sidebar.classList.contains("collapsed")) {
+      sidebar.classList.remove("collapsed");
+      main.classList.remove("collapsed");
+    } else {
+      sidebar.classList.add("collapsed");
+      main.classList.add("collapsed");
+    }
+  }
+  </script>
 </body>
 </html>
