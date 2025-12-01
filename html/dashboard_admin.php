@@ -1,6 +1,20 @@
-<?php 
+<?php
 session_start();
 require_once '../php/connect.php';
+$sql = "SELECT 
+            s.usuario AS secretaria,
+            s.municipio AS municipio,
+            e.nome AS escola,
+            t.nome AS tarefa,
+            t.responsavel AS responsavel
+        FROM Secretaria_Escola_Tarefa setaf
+        JOIN Secretarias s ON setaf.id_secretarias = s.idSecretarias
+        JOIN Escolas e ON setaf.id_escolas = e.idEscolas
+        JOIN Tarefa t ON setaf.id_tarefa = t.idTarefa";
+
+$stmt = $pdo->prepare($sql);
+$stmt->execute();
+$dados = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 ?>
 
@@ -17,6 +31,7 @@ require_once '../php/connect.php';
   <script src="../bootstrap/JS/jquery.min.js"></script>
   <link rel="stylesheet" href="../assets/css/dashboard_admin.css">
 </head>
+
 <body>
 
   <div id="sidebar">
@@ -127,7 +142,7 @@ require_once '../php/connect.php';
           </div>
         </div>
       </div>
-      <?php 
+      <?php
       // ÁREA DESTINADA AS CONSULTAS DE CONTAGEM EM TEMPO REAL DO DASHBOARD
       $stmt = $pdo->query("SELECT COUNT(*) AS total_pendentes FROM planos WHERE status = 0 ");
       $pendentes = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -148,7 +163,7 @@ require_once '../php/connect.php';
           <div class="card h-100 shadow-lg text-center border-0" style="border-radius: 18px;">
             <div class="card-body p-4">
               <h5 class="card-title fw-bold mb-3"> Pendente </h5>
-              <div class="display-4 mb-2 fw-bold text-warning">  <?php echo $total_pendentes; ?></div>
+              <div class="display-4 mb-2 fw-bold text-warning"> <?php echo $total_pendentes; ?></div>
               <p class="card-text text-muted">Planejamentos Pendentes</p>
             </div>
           </div>
@@ -213,14 +228,29 @@ require_once '../php/connect.php';
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td>Secretaria Municipal da Educação</td>
-              <td>Caridade</td>
-              <td>EEF Carmozina Bittencourt de Pinho</td>
-              <td>Para suprir a carência em operações matemá...</td>
-              <td>Olavo de Carvalho</td>
-            </tr>
+            <?php foreach ($dados as $campo): ?>
+              <?php
+              $mapMunicipio = [
+                '1' => 'Canindé',
+                '2' => 'Caridade',
+                '3' => 'General Sampaio',
+                '4' => 'Itatira',
+                '5' => 'Paramoti',
+                '6' => 'Santa Quitéria'
+              ];
+
+              $municipio = $mapMunicipio[$campo['municipio']] ?? "Desconhecido";
+              ?>
+              <tr>
+                <td><?= htmlspecialchars($campo['secretaria']) ?></td>
+                <td><?= htmlspecialchars($municipio) ?></td>
+                <td><?= htmlspecialchars($campo['escola']) ?></td>
+                <td><?= htmlspecialchars($campo['tarefa']) ?></td>
+                <td><?= htmlspecialchars($campo['responsavel']) ?></td>
+              </tr>
+            <?php endforeach; ?>
           </tbody>
+
         </table>
       </div>
   </main>
@@ -241,31 +271,34 @@ require_once '../php/connect.php';
   }
 
   document.addEventListener("DOMContentLoaded", function() {
-        const urlParams = new URLSearchParams(window.location.search);
+    const urlParams = new URLSearchParams(window.location.search);
 
-        if (urlParams.get('sucesso') === '1') {
+    if (urlParams.get('sucesso') === '1') {
 
-          Swal.fire({
-              icon: 'success',
-              title: 'Tudo certo!',
-              text: 'Cadastro realizado com sucesso!',
-              confirmButtonText: 'OK',
-              background: '#ffffff', 
-              color: '#333', 
-              iconColor: '#4CAF50', 
-              confirmButtonColor: '#128630ff', 
-              confirmButtonTextColor: '#fff', 
-              width: '450px', 
-              padding: '35px',
-              customClass: {
-                popup: 'swal-custom-popup',
-                title: 'swal-custom-title',
-                confirmButton: 'swal-custom-btn'}
-              });
+      Swal.fire({
+        icon: 'success',
+        title: 'Tudo certo!',
+        text: 'Cadastro realizado com sucesso!',
+        confirmButtonText: 'OK',
+        background: '#ffffff',
+        color: '#333',
+        iconColor: '#4CAF50',
+        confirmButtonColor: '#128630ff',
+        confirmButtonTextColor: '#fff',
+        width: '450px',
+        padding: '35px',
+        customClass: {
+          popup: 'swal-custom-popup',
+          title: 'swal-custom-title',
+          confirmButton: 'swal-custom-btn'
+        }
+      });
 
-            const url = new URL(window.location); url.searchParams.delete('sucesso'); window.history.replaceState({}, '', url);
-          }
-        });
+      const url = new URL(window.location);
+      url.searchParams.delete('sucesso');
+      window.history.replaceState({}, '', url);
+    }
+  });
 </script>
 <script src="../assets/js/sweetalert2@11.js"></script>
 
