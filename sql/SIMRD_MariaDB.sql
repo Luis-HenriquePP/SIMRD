@@ -64,7 +64,7 @@ CREATE TABLE IF NOT EXISTS `Componente` (
   PRIMARY KEY (`idComponente`)
 ) ENGINE=InnoDB;
 INSERT INTO `componente` (`idComponente`, `nome`) VALUES (NULL, 'Língua Portuguesa');
-INSERT INTO `componente` (`idComponente`, `nome`) VALUES (NULL, 'Português');
+INSERT INTO `componente` (`idComponente`, `nome`) VALUES (NULL, 'Matemática');
 -- -----------------------------------------------------
 -- Table `Serie`
 -- -----------------------------------------------------
@@ -208,14 +208,14 @@ CREATE TABLE IF NOT EXISTS `Escolas` (
     ON UPDATE NO ACTION
 ) ENGINE=InnoDB;
 
-CREATE TABLE IF NOT EXISTS Secretaria_Escola_Tarefa ( 
-  id_secretaria_escola_plano INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-  id_secretarias INT NOT NULL,
-  id_escolas INT NOT NULL
-  id_tarefa INT NOT NULL,
-  FOREIGN KEY (id_secretarias) REFERENCES Secretarias(idSecretarias) ON DELETE CASCADE ON UPDATE CASCADE,
-  FOREIGN KEY (id_escolas) REFERENCES Escolas(idEscolas) ON DELETE CASCADE ON UPDATE CASCADE,
-  FOREIGN KEY (id_tarefa) REFERENCES Tarefa(idTarefa) ON DELETE CASCADE ON UPDATE CASCADE
+CREATE TABLE IF NOT EXISTS  `Secretaria_Escola_Tarefa`( 
+  `id_secretaria_escola_plano` INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  `id_secretarias` INT NOT NULL,
+  `id_escolas` INT NOT NULL
+  `id_tarefa` INT NOT NULL,
+FOREIGN KEY (`id_secretarias`) REFERENCES  `Secretarias `(`idSecretarias`) ON DELETE CASCADE ON UPDATE CASCADE,
+  FOREIGN KEY (`id_escolas`) REFERENCES  `Escolas `(`idEscolas`) ON DELETE CASCADE ON UPDATE CASCADE,
+  FOREIGN KEY (`id_tarefa`) REFERENCES  `Tarefa `(`idTarefa`) ON DELETE CASCADE ON UPDATE CASCADE
 )
 
 -- Restaurar estados anteriores
