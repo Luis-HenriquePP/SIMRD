@@ -1,10 +1,11 @@
 <?php
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
 require_once '../php/connect.php';
-// pegar filtros (GET)
 $status = $_GET['status'] ?? '';
 $componente = $_GET['componente'] ?? '';
 
-// mapa de municípios (caso use ID no banco)
 $mapMunicipio = [
   '1' => 'Canindé',
   '2' => 'Caridade',
@@ -14,7 +15,6 @@ $mapMunicipio = [
   '6' => 'Santa Quitéria'
 ];
 
-// SQL base
 $sql = "SELECT 
           s.usuario AS secretaria,
           s.municipio AS municipio,
@@ -31,7 +31,6 @@ $sql = "SELECT
 
 $params = [];
 
-// adiciona filtro se foi informado (note que usamos cast para int por segurança)
 if ($status !== '') {
   $sql .= " AND t.status = ?";
   $params[] = (int)$status;
@@ -41,7 +40,6 @@ if ($componente !== '') {
   $params[] = (int)$componente;
 }
 
-// ordenação opcional
 $sql .= " ORDER BY s.usuario, e.nome";
 
 $stmt = $pdo->prepare($sql);
@@ -174,15 +172,15 @@ $dados = $stmt->fetchAll(PDO::FETCH_ASSOC);
       </div>
       <?php
       // ÁREA DESTINADA AS CONSULTAS DE CONTAGEM EM TEMPO REAL DO DASHBOARD
-      $stmt = $pdo->query("SELECT COUNT(*) AS total_pendentes FROM planos WHERE status = 0 ");
+      $stmt = $pdo->query("SELECT COUNT(*) AS total_pendentes FROM Planos WHERE status = 0 ");
       $pendentes = $stmt->fetchAll(PDO::FETCH_ASSOC);
       $total_pendentes = $pendentes[0]['total_pendentes'] ?? 'erro';
 
-      $stmt = $pdo->query("SELECT COUNT(*) AS total_exec FROM planos WHERE status = 1");
+      $stmt = $pdo->query("SELECT COUNT(*) AS total_exec FROM Planos WHERE status = 1");
       $execucao = $stmt->fetchAll(PDO::FETCH_ASSOC);
       $total_exec = $execucao[0]['total_exec'] ?? 'erro';
 
-      $stmt = $pdo->query("SELECT COUNT(*) AS total_concluidos FROM planos WHERE status = 2");
+      $stmt = $pdo->query("SELECT COUNT(*) AS total_concluidos FROM Planos WHERE status = 2");
       $concluidos = $stmt->fetchAll(PDO::FETCH_ASSOC);
       $total_concluidos = $concluidos[0]['total_concluidos'] ?? 'erro';
 
@@ -259,7 +257,6 @@ $dados = $stmt->fetchAll(PDO::FETCH_ASSOC);
             <?php else: ?>
               <?php foreach ($dados as $campo): ?>
                 <?php
-                // Se no banco o município é o ID -> converte; se já é o nome -> usa direto
                 $municipioRaw = $campo['municipio'] ?? '';
                 $municipioExib = is_numeric($municipioRaw) ? ($mapMunicipio[$municipioRaw] ?? $municipioRaw) : $municipioRaw;
                 ?>
