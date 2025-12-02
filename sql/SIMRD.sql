@@ -41,13 +41,16 @@ CREATE TABLE IF NOT EXISTS `Status` (
   `nome` VARCHAR(45) NULL,
   PRIMARY KEY (`idStatus`)
 ) ENGINE=InnoDB;
-INSERT INTO `status`(`idStatus`, `nome`) VALUES (0, 'Pendente');
-INSERT INTO `status`(`idStatus`, `nome`) VALUES (1, 'Em execução');
-INSERT INTO `status`(`idStatus`, `nome`) VALUES (2, 'Concluídos');
-INSERT INTO `status`(`idStatus`, `nome`) VALUES (3, 'Planejado');
-INSERT INTO `status`(`idStatus`, `nome`) VALUES (4, 'Replanejado');
-INSERT INTO `status`(`idStatus`, `nome`) VALUES (5, 'Realizada no prazo');
-INSERT INTO `status`(`idStatus`, `nome`) VALUES (6, 'Não realizada');
+
+INSERT INTO `Status` (`nome`) VALUES
+ ('Pendente'),
+ ('Em execução'),
+ ('Concluídos'),
+ ('Planejado'),
+ ('Replanejado'),
+ ('Realizada no prazo'),
+ ('Não realizada');
+
 -- -----------------------------------------------------
 -- Table `Componente`
 -- -----------------------------------------------------
@@ -56,8 +59,11 @@ CREATE TABLE IF NOT EXISTS `Componente` (
   `nome` VARCHAR(45) NULL,
   PRIMARY KEY (`idComponente`)
 ) ENGINE=InnoDB;
-INSERT INTO `componente` (`idComponente`, `nome`) VALUES (NULL, 'Língua Portuguesa');
-INSERT INTO `componente` (`idComponente`, `nome`) VALUES (NULL, 'Português');
+
+INSERT INTO `Componente` (`nome`) VALUES
+ ('Língua Portuguesa'),
+ ('Português');
+
 -- -----------------------------------------------------
 -- Table `Serie`
 -- -----------------------------------------------------
@@ -66,15 +72,10 @@ CREATE TABLE IF NOT EXISTS `Serie` (
   `nome` VARCHAR(45) NULL,
   PRIMARY KEY (`idSerie`)
 ) ENGINE=InnoDB;
-INSERT INTO `serie`(`idSerie`, `nome`) VALUES ( NULL,'1°');
-INSERT INTO `serie`(`idSerie`, `nome`) VALUES ( NULL,'2°');
-INSERT INTO `serie`(`idSerie`, `nome`) VALUES ( NULL,'3°');
-INSERT INTO `serie`(`idSerie`, `nome`) VALUES ( NULL,'4°');
-INSERT INTO `serie`(`idSerie`, `nome`) VALUES ( NULL,'5°');
-INSERT INTO `serie`(`idSerie`, `nome`) VALUES ( NULL,'6°');
-INSERT INTO `serie`(`idSerie`, `nome`) VALUES ( NULL,'7°');
-INSERT INTO `serie`(`idSerie`, `nome`) VALUES ( NULL,'8°');
-INSERT INTO `serie`(`idSerie`, `nome`) VALUES ( NULL,'9°');
+
+INSERT INTO `Serie` (`nome`) VALUES
+ ('1°'),('2°'),('3°'),('4°'),('5°'),
+ ('6°'),('7°'),('8°'),('9°');
 
 -- -----------------------------------------------------
 -- Table `Tarefa`
@@ -89,24 +90,18 @@ CREATE TABLE IF NOT EXISTS `Tarefa` (
   `data_inicial` DATETIME NULL,
   `data_final` DATETIME NULL,
   PRIMARY KEY (`idTarefa`),
-  INDEX `fk_Tarefa_Status_idx` (`status` ASC) VISIBLE,
-  INDEX `fk_Tarefa_Componente_idx` (`componente` ASC) VISIBLE,
-  INDEX `fk_Tarefa_Serie_idx` (`serie` ASC) VISIBLE,
+  INDEX `fk_Tarefa_Status_idx` (`status`),
+  INDEX `fk_Tarefa_Componente_idx` (`componente`),
+  INDEX `fk_Tarefa_Serie_idx` (`serie`),
   CONSTRAINT `fk_Tarefa_Status`
-    FOREIGN KEY (`status`)
-    REFERENCES `Status` (`idStatus`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
+    FOREIGN KEY (`status`) REFERENCES `Status` (`idStatus`)
+    ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_Tarefa_Componente`
-    FOREIGN KEY (`componente`)
-    REFERENCES `Componente` (`idComponente`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
+    FOREIGN KEY (`componente`) REFERENCES `Componente` (`idComponente`)
+    ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_Tarefa_Serie`
-    FOREIGN KEY (`serie`)
-    REFERENCES `Serie` (`idSerie`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION
+    FOREIGN KEY (`serie`) REFERENCES `Serie` (`idSerie`)
+    ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB;
 
 -- -----------------------------------------------------
@@ -142,36 +137,26 @@ CREATE TABLE IF NOT EXISTS `Planos` (
   `componente` INT NULL,
   `serie` INT NULL,
   PRIMARY KEY (`idPlanos`),
-  INDEX `fk_Planos_Status_idx` (`status` ASC) VISIBLE,
-  INDEX `fk_Planos_Ciclo_idx` (`ciclo` ASC) VISIBLE,
-  INDEX `fk_Planos_Avaliacao_idx` (`avaliacao` ASC) VISIBLE,
-  INDEX `fk_Planos_Componente_idx` (`componente` ASC) VISIBLE,
-  INDEX `fk_Planos_Serie_idx` (`serie` ASC) VISIBLE,
+  INDEX `fk_Planos_Status_idx` (`status`),
+  INDEX `fk_Planos_Ciclo_idx` (`ciclo`),
+  INDEX `fk_Planos_Avaliacao_idx` (`avaliacao`),
+  INDEX `fk_Planos_Componente_idx` (`componente`),
+  INDEX `fk_Planos_Serie_idx` (`serie`),
   CONSTRAINT `fk_Planos_Status`
-    FOREIGN KEY (`status`)
-    REFERENCES `Status` (`idStatus`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
+    FOREIGN KEY (`status`) REFERENCES `Status` (`idStatus`)
+    ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_Planos_Ciclo`
-    FOREIGN KEY (`ciclo`)
-    REFERENCES `Ciclo` (`idCiclo`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
+    FOREIGN KEY (`ciclo`) REFERENCES `Ciclo` (`idCiclo`)
+    ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_Planos_Avaliacao`
-    FOREIGN KEY (`avaliacao`)
-    REFERENCES `Avaliacao_formativa` (`idAvaliacao_formativa`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
+    FOREIGN KEY (`avaliacao`) REFERENCES `Avaliacao_formativa` (`idAvaliacao_formativa`)
+    ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_Planos_Serie`
-    FOREIGN KEY (`serie`)
-    REFERENCES `Serie` (`idSerie`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
+    FOREIGN KEY (`serie`) REFERENCES `Serie` (`idSerie`)
+    ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_Planos_Componente`
-    FOREIGN KEY (`componente`)
-    REFERENCES `Componente` (`idComponente`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION
+    FOREIGN KEY (`componente`) REFERENCES `Componente` (`idComponente`)
+    ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB;
 
 -- -----------------------------------------------------
@@ -187,29 +172,33 @@ CREATE TABLE IF NOT EXISTS `Escolas` (
   `tarefa` INT NULL,
   `planos` INT NULL,
   PRIMARY KEY (`idEscolas`),
-  INDEX `fk_Escolas_Tarefa_idx` (`tarefa` ASC) VISIBLE,
-  INDEX `fk_Escolas_Planos_idx` (`planos` ASC) VISIBLE,
+  INDEX `fk_Escolas_Tarefa_idx` (`tarefa`),
+  INDEX `fk_Escolas_Planos_idx` (`planos`),
   CONSTRAINT `fk_Escolas_Tarefa`
-    FOREIGN KEY (`tarefa`)
-    REFERENCES `Tarefa` (`idTarefa`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
+    FOREIGN KEY (`tarefa`) REFERENCES `Tarefa` (`idTarefa`)
+    ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_Escolas_Planos`
-    FOREIGN KEY (`planos`)
-    REFERENCES `Planos` (`idPlanos`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION
+    FOREIGN KEY (`planos`) REFERENCES `Planos` (`idPlanos`)
+    ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB;
 
-CREATE TABLE IF NOT EXISTS  `Secretaria_Escola_Tarefa`( 
+-- -----------------------------------------------------
+-- Table `Secretaria_Escola_Tarefa`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `Secretaria_Escola_Tarefa` (
   `id_secretaria_escola_plano` INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
   `id_secretarias` INT NOT NULL,
-  `id_escolas` INT NOT NULL
+  `id_escolas` INT NOT NULL,
   `id_tarefa` INT NOT NULL,
-FOREIGN KEY (`id_secretarias`) REFERENCES  `Secretarias `(`idSecretarias`) ON DELETE CASCADE ON UPDATE CASCADE,
-  FOREIGN KEY (`id_escolas`) REFERENCES  `Escolas `(`idEscolas`) ON DELETE CASCADE ON UPDATE CASCADE,
-  FOREIGN KEY (`id_tarefa`) REFERENCES  `Tarefa `(`idTarefa`) ON DELETE CASCADE ON UPDATE CASCADE
-)
+  FOREIGN KEY (`id_secretarias`) REFERENCES `Secretarias`(`idSecretarias`)
+    ON DELETE CASCADE ON UPDATE CASCADE,
+  FOREIGN KEY (`id_escolas`) REFERENCES `Escolas`(`idEscolas`)
+    ON DELETE CASCADE ON UPDATE CASCADE,
+  FOREIGN KEY (`id_tarefa`) REFERENCES `Tarefa`(`idTarefa`)
+    ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB;
+
+-- Restaurando configurações
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
