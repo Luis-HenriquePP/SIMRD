@@ -1,23 +1,53 @@
 <?php
-session_start();
 require_once '../php/connect.php';
+// pegar filtros (GET)
+$status = $_GET['status'] ?? '';
+$componente = $_GET['componente'] ?? '';
+
+// mapa de municípios (caso use ID no banco)
+$mapMunicipio = [
+  '1' => 'Canindé',
+  '2' => 'Caridade',
+  '3' => 'General Sampaio',
+  '4' => 'Itatira',
+  '5' => 'Paramoti',
+  '6' => 'Santa Quitéria'
+];
+
+// SQL base
 $sql = "SELECT 
-            s.usuario AS secretaria,
-            s.municipio AS municipio,
-            e.nome AS escola,
-            t.nome AS tarefa,
-            t.responsavel AS responsavel
+          s.usuario AS secretaria,
+          s.municipio AS municipio,
+          e.nome AS escola,
+          t.nome AS tarefa,
+          t.responsavel AS responsavel,
+          t.status AS status,
+          t.componente AS componente
         FROM Secretaria_Escola_Tarefa setaf
         JOIN Secretarias s ON setaf.id_secretarias = s.idSecretarias
         JOIN Escolas e ON setaf.id_escolas = e.idEscolas
-        JOIN Tarefa t ON setaf.id_tarefa = t.idTarefa";
+        JOIN Tarefa t ON setaf.id_tarefa = t.idTarefa
+        WHERE 1=1";
+
+$params = [];
+
+// adiciona filtro se foi informado (note que usamos cast para int por segurança)
+if ($status !== '') {
+  $sql .= " AND t.status = ?";
+  $params[] = (int)$status;
+}
+if ($componente !== '') {
+  $sql .= " AND t.componente = ?";
+  $params[] = (int)$componente;
+}
+
+// ordenação opcional
+$sql .= " ORDER BY s.usuario, e.nome";
 
 $stmt = $pdo->prepare($sql);
-$stmt->execute();
+$stmt->execute($params);
 $dados = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
 ?>
-
 <!DOCTYPE html>
 <html lang="pt-BR">
 
@@ -193,30 +223,24 @@ $dados = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
       <div class="ranking-box mt-4">
         <div class="d-flex justify-content-center mb-4">
-          <form class="d-flex align-items-center flex-wrap gap-3">
-            <select class="btn btn-secondary">
-              <option>Filtrar por Status</option>
-              <option value="1">Não Realizado</option>
-              <option value="2">Planejado</option>
-              <option value="3">Replanejado</option>
-              <option value="4">Realizado no Prazo</option>
-              <option value="5">Realizado com Atraso</option>
+          <form class="d-flex align-items-center flex-wrap gap-3" method="GET">
+            <select class="btn btn-secondary" name="status">
+              <option value="">Filtrar por Status</option>
+              <option value="6" <?= ($status === '6') ? 'selected' : '' ?>>Não realizada</option>
+              <option value="3" <?= ($status === '3') ? 'selected' : '' ?>>Planejado</option>
+              <option value="4" <?= ($status === '4') ? 'selected' : '' ?>>Replanejado</option>
+              <option value="5" <?= ($status === '5') ? 'selected' : '' ?>>Realizado no Prazo</option>
             </select>
 
-            <select class="btn btn-secondary">
-              <option>Filtrar por Componente</option>
-              <option value="1">Língua Portuguesa</option>
-              <option value="2">Matemática</option>
+            <select class="btn btn-secondary" name="componente">
+              <option value="">Filtrar por Componente</option>
+              <option value="1" <?= ($componente === '1') ? 'selected' : '' ?>>Língua Portuguesa</option>
+              <option value="2" <?= ($componente === '2') ? 'selected' : '' ?>>Matemática</option>
             </select>
+            <button class="btn btn-success" type="submit">Filtrar</button>
+            <a class="btn btn-outline-secondary" href="<?= htmlspecialchars($_SERVER['PHP_SELF']) ?>">Limpar</a>
           </form>
-
-
         </div>
-        <div class="mt-3 mb-3 justify-content-end d-flex">
-          <button class="btn btn-success">Filtrar</button>
-        </div>
-
-
         <table class="table">
           <thead>
             <tr>
@@ -228,29 +252,27 @@ $dados = $stmt->fetchAll(PDO::FETCH_ASSOC);
             </tr>
           </thead>
           <tbody>
-            <?php foreach ($dados as $campo): ?>
-              <?php
-              $mapMunicipio = [
-                '1' => 'Canindé',
-                '2' => 'Caridade',
-                '3' => 'General Sampaio',
-                '4' => 'Itatira',
-                '5' => 'Paramoti',
-                '6' => 'Santa Quitéria'
-              ];
-
-              $municipio = $mapMunicipio[$campo['municipio']] ?? "Desconhecido";
-              ?>
+            <?php if (empty($dados)): ?>
               <tr>
-                <td><?= htmlspecialchars($campo['secretaria']) ?></td>
-                <td><?= htmlspecialchars($campo['municipio']) ?></td>
-                <td><?= htmlspecialchars($campo['escola']) ?></td>
-                <td><?= htmlspecialchars($campo['tarefa']) ?></td>
-                <td><?= htmlspecialchars($campo['responsavel']) ?></td>
+                <td colspan="5" style="text-align: center;">Nenhum registro encontrado.</td>
               </tr>
-            <?php endforeach; ?>
+            <?php else: ?>
+              <?php foreach ($dados as $campo): ?>
+                <?php
+                // Se no banco o município é o ID -> converte; se já é o nome -> usa direto
+                $municipioRaw = $campo['municipio'] ?? '';
+                $municipioExib = is_numeric($municipioRaw) ? ($mapMunicipio[$municipioRaw] ?? $municipioRaw) : $municipioRaw;
+                ?>
+                <tr>
+                  <td><?= htmlspecialchars($campo['secretaria'] ?? '') ?></td>
+                  <td><?= htmlspecialchars($municipioExib) ?></td>
+                  <td><?= htmlspecialchars($campo['escola'] ?? '') ?></td>
+                  <td><?= htmlspecialchars($campo['tarefa'] ?? '') ?></td>
+                  <td><?= htmlspecialchars($campo['responsavel'] ?? '') ?></td>
+                </tr>
+              <?php endforeach; ?>
+            <?php endif; ?>
           </tbody>
-
         </table>
       </div>
   </main>
