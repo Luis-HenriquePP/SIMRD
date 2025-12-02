@@ -47,13 +47,13 @@ CREATE TABLE IF NOT EXISTS `Status` (
   `nome` VARCHAR(45) NULL,
   PRIMARY KEY (`idStatus`)
 ) ENGINE=InnoDB;
-INSERT INTO `status`(`idStatus`, `nome`) VALUES (0, 'Pendente');
-INSERT INTO `status`(`idStatus`, `nome`) VALUES (1, 'Em execução');
-INSERT INTO `status`(`idStatus`, `nome`) VALUES (2, 'Concluídos');
-INSERT INTO `status`(`idStatus`, `nome`) VALUES (3, 'Planejado');
-INSERT INTO `status`(`idStatus`, `nome`) VALUES (4, 'Replanejado');
-INSERT INTO `status`(`idStatus`, `nome`) VALUES (5, 'Realizada no prazo');
-INSERT INTO `status`(`idStatus`, `nome`) VALUES (6, 'Não realizada');
+INSERT INTO `status`(`idStatus`, `nome`) VALUES (null, 'Pendente');
+INSERT INTO `status`(`idStatus`, `nome`) VALUES (null, 'Em execução');
+INSERT INTO `status`(`idStatus`, `nome`) VALUES (null, 'Concluídos');
+INSERT INTO `status`(`idStatus`, `nome`) VALUES (null, 'Planejado');
+INSERT INTO `status`(`idStatus`, `nome`) VALUES (null, 'Replanejado');
+INSERT INTO `status`(`idStatus`, `nome`) VALUES (null, 'Realizada no prazo');
+INSERT INTO `status`(`idStatus`, `nome`) VALUES (null, 'Não realizada');
 
 -- -----------------------------------------------------
 -- Table `Componente`
@@ -73,15 +73,15 @@ CREATE TABLE IF NOT EXISTS `Serie` (
   `nome` VARCHAR(45) NULL,
   PRIMARY KEY (`idSerie`)
 ) ENGINE=InnoDB;
-INSERT INTO `serie`(`idSerie`, `nome`) VALUES ( NULL,'1°');
-INSERT INTO `serie`(`idSerie`, `nome`) VALUES ( NULL,'2°');
-INSERT INTO `serie`(`idSerie`, `nome`) VALUES ( NULL,'3°');
-INSERT INTO `serie`(`idSerie`, `nome`) VALUES ( NULL,'4°');
-INSERT INTO `serie`(`idSerie`, `nome`) VALUES ( NULL,'5°');
-INSERT INTO `serie`(`idSerie`, `nome`) VALUES ( NULL,'6°');
-INSERT INTO `serie`(`idSerie`, `nome`) VALUES ( NULL,'7°');
-INSERT INTO `serie`(`idSerie`, `nome`) VALUES ( NULL,'8°');
-INSERT INTO `serie`(`idSerie`, `nome`) VALUES ( NULL,'9°');
+INSERT INTO `serie`(`nome`) VALUES ('1°');
+INSERT INTO `serie`(`nome`) VALUES ('2°');
+INSERT INTO `serie`(`nome`) VALUES ('3°');
+INSERT INTO `serie`(`nome`) VALUES ('4°');
+INSERT INTO `serie`(`nome`) VALUES ('5°');
+INSERT INTO `serie`(`nome`) VALUES ('6°');
+INSERT INTO `serie`(`nome`) VALUES ('7°');
+INSERT INTO `serie`(`nome`) VALUES ('8°');
+INSERT INTO `serie`(`nome`) VALUES ('9°');
 
 -- -----------------------------------------------------
 -- Table `Tarefa`
@@ -208,15 +208,21 @@ CREATE TABLE IF NOT EXISTS `Escolas` (
     ON UPDATE NO ACTION
 ) ENGINE=InnoDB;
 
-CREATE TABLE IF NOT EXISTS  `Secretaria_Escola_Tarefa`( 
-  `id_secretaria_escola_plano` INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+CREATE TABLE IF NOT EXISTS `Secretaria_Escola_Tarefa` (
+  `id_secretaria_escola_tarefa` INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
   `id_secretarias` INT NOT NULL,
-  `id_escolas` INT NOT NULL
+  `id_escolas` INT NOT NULL,
   `id_tarefa` INT NOT NULL,
-FOREIGN KEY (`id_secretarias`) REFERENCES  `Secretarias `(`idSecretarias`) ON DELETE CASCADE ON UPDATE CASCADE,
-  FOREIGN KEY (`id_escolas`) REFERENCES  `Escolas `(`idEscolas`) ON DELETE CASCADE ON UPDATE CASCADE,
-  FOREIGN KEY (`id_tarefa`) REFERENCES  `Tarefa `(`idTarefa`) ON DELETE CASCADE ON UPDATE CASCADE
-)
+
+  FOREIGN KEY (`id_secretarias`) REFERENCES `Secretarias`(`idSecretarias`)
+    ON DELETE CASCADE ON UPDATE CASCADE,
+
+  FOREIGN KEY (`id_escolas`) REFERENCES `Escolas`(`idEscolas`)
+    ON DELETE CASCADE ON UPDATE CASCADE,
+
+  FOREIGN KEY (`id_tarefa`) REFERENCES `Tarefa`(`idTarefa`)
+    ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB;
 
 -- Restaurar estados anteriores
 SET SQL_MODE=@OLD_SQL_MODE;
