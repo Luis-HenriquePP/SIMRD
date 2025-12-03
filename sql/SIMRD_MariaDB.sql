@@ -73,15 +73,10 @@ CREATE TABLE IF NOT EXISTS `Serie` (
   `nome` VARCHAR(45) NULL,
   PRIMARY KEY (`idSerie`)
 ) ENGINE=InnoDB;
-INSERT INTO `serie`(`nome`) VALUES ('1°');
-INSERT INTO `serie`(`nome`) VALUES ('2°');
-INSERT INTO `serie`(`nome`) VALUES ('3°');
-INSERT INTO `serie`(`nome`) VALUES ('4°');
-INSERT INTO `serie`(`nome`) VALUES ('5°');
-INSERT INTO `serie`(`nome`) VALUES ('6°');
-INSERT INTO `serie`(`nome`) VALUES ('7°');
-INSERT INTO `serie`(`nome`) VALUES ('8°');
-INSERT INTO `serie`(`nome`) VALUES ('9°');
+
+INSERT INTO `Serie` (`nome`) VALUES
+ ('1°'),('2°'),('3°'),('4°'),('5°'),
+ ('6°'),('7°'),('8°'),('9°');
 
 -- -----------------------------------------------------
 -- Table `Tarefa`
@@ -208,19 +203,19 @@ CREATE TABLE IF NOT EXISTS `Escolas` (
     ON UPDATE NO ACTION
 ) ENGINE=InnoDB;
 
-CREATE TABLE IF NOT EXISTS Secretaria_Escola_Plano (
-  id_secretaria_escola_plano INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-  id_secretarias INT NOT NULL,
-  id_escolas INT NOT NULL,
-  id_planos INT NOT NULL,
+CREATE TABLE IF NOT EXISTS `Secretaria_Escola_Plano` (
+  `id_secretaria_escola_plano` INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  `id_secretarias` INT NOT NULL,
+  `id_escolas` INT NOT NULL,
+  `id_planos` INT NOT NULL,
 
-  FOREIGN KEY (id_secretarias) REFERENCES Secretarias(idSecretarias)
+  FOREIGN KEY (`id_secretarias`) REFERENCES `Secretarias`(`idSecretarias`)
     ON DELETE CASCADE ON UPDATE CASCADE,
 
-  FOREIGN KEY (id_escolas) REFERENCES Escolas(idEscolas)
+  FOREIGN KEY (`id_escolas`) REFERENCES `Escolas`(`idEscolas`)
     ON DELETE CASCADE ON UPDATE CASCADE,
 
-  FOREIGN KEY (id_planos) REFERENCES Planos(idPlanos)
+  FOREIGN KEY (`id_planos`) REFERENCES `Planos`(`idPlanos`)
     ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB;
 
