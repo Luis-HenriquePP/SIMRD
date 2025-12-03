@@ -17,33 +17,34 @@ $mapMunicipio = [
 
 $sql = "SELECT 
           s.usuario AS secretaria,
-          s.municipio AS municipio,
+          e.municipio AS municipio,
           e.nome AS escola,
-          t.nome AS tarefa,
-          t.responsavel AS responsavel,
-          t.status AS status,
-          t.componente AS componente
-        FROM Secretaria_Escola_Tarefa setaf
-        JOIN Secretarias s ON setaf.id_secretarias = s.idSecretarias
-        JOIN Escolas e ON setaf.id_escolas = e.idEscolas
-        JOIN Tarefa t ON setaf.id_tarefa = t.idTarefa
+          p.idPlanos AS plano,
+          st.nome AS status,
+          p.componente AS componente
+        FROM secretaria_escola_plano AS sep
+        JOIN secretarias s ON sep.id_secretarias = s.idSecretarias
+        JOIN escolas e ON sep.id_escolas = e.idEscolas
+        JOIN planos p ON sep.id_planos = p.idPlanos
+        JOIN status st ON p.status = st.idStatus
         WHERE 1=1";
 
+// FILTROS
 $params = [];
 
-if ($status !== '') {
-  $sql .= " AND t.status = ?";
-  $params[] = (int)$status;
-}
-if ($componente !== '') {
-  $sql .= " AND t.componente = ?";
-  $params[] = (int)$componente;
+if (!empty($_GET['status'])) {
+    $sql .= " AND st.idStatus = :status";
+    $params[':status'] = (int)$status;
 }
 
-$sql .= " ORDER BY s.usuario, e.nome";
+if ($componente !== '') {
+    $sql .= " AND p.componente = :componente";
+    $params[':componente'] = (int)$componente;
+}
 
 $stmt = $pdo->prepare($sql);
 $stmt->execute($params);
+
 $dados = $stmt->fetchAll(PDO::FETCH_ASSOC);
 ?>
 <!DOCTYPE html>
@@ -241,7 +242,7 @@ $dados = $stmt->fetchAll(PDO::FETCH_ASSOC);
         </div>
         <table class="table">
           <thead>
-            <tr>
+            <tr style="text-align: center;">
               <th>Secretaria</th>
               <th>Município</th>
               <th>Escola</th>
@@ -260,11 +261,11 @@ $dados = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 $municipioRaw = $campo['municipio'] ?? '';
                 $municipioExib = is_numeric($municipioRaw) ? ($mapMunicipio[$municipioRaw] ?? $municipioRaw) : $municipioRaw;
                 ?>
-                <tr>
+                <tr style="text-align: center;">
                   <td><?= htmlspecialchars($campo['secretaria'] ?? '') ?></td>
                   <td><?= htmlspecialchars($municipioExib) ?></td>
                   <td><?= htmlspecialchars($campo['escola'] ?? '') ?></td>
-                  <td><?= htmlspecialchars($campo['tarefa'] ?? '') ?></td>
+                  <td><?= htmlspecialchars($campo['plano'] ?? '') ?></td>
                   <td><?= htmlspecialchars($campo['responsavel'] ?? '') ?></td>
                 </tr>
               <?php endforeach; ?>
