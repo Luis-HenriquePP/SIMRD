@@ -1,61 +1,37 @@
 <?php
-error_reporting(E_ALL);
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
+require_once '../php/connect.php'; // Conexão PDO
 
-require_once '../php/connect.php';
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
-$avaliacaoTopo = $_POST["AvaliaçãoFormativa"] ?? null;
-$componente    = $_POST["Componente"] ?? null;
-$ciclo         = $_POST["Ciclo"] ?? null;
-$responsavel   = $_POST["Responsavel"] ?? null;
+    // Valida dados principais
+    $ciclo = $_POST['Ciclo'] ?? null;
+    $componente = $_POST['Componente'] ?? null;
+    $avaliacao = $_POST['AvaliaçãoFormativa'] ?? null;
+    $responsavel = $_POST['Responsavel'] ?? null;
 
-// Tabelas sincronizadas
-$metricas = $_POST["metricas"];
-$plano    = $_POST["plano"];
+    if (!in_array($ciclo, [1,2,3])) die("Ciclo inválido");
+    if (!in_array($componente, [1,2])) die("Componente inválido");
+    if (!in_array($avaliacao, [1,2,3])) die("Avaliação inválida");
 
-// Quantidade de linhas
-$qtd = count($metricas["avaliacao"]);
-
-try {
-
-    // Iniciar transação
     $pdo->beginTransaction();
 
-    // Prepare insert
-    $stmt = $pdo->prepare("
-        INSERT INTO Planos 
-        (previstos, defasagem, avaliados, reducao, status, avaliacao, ciclo, componente, serie)
-        VALUES (:previstos, :defasagem, :avaliados, :reducao, :status, :avaliacao, :ciclo, :componente, :serie)
-    ");
+    try {
+        // Inserir Planos
+        $stmt = $pdo->prepare("INSERT INTO Planos (ciclo, componente, avaliacao, responsavel, status) VALUES (?, ?, ?, ?, ?)");
+        foreach ($_POST['plano']['status'] as $i => $status) {
+            if (!in_array($status, [1,2,3,4,5])) throw new Exception("Status inválido na linha ".($i+1));
+            $stmt->execute([$ciclo, $componente, $avaliacao, $responsavel, $status]);
+        }
 
-    // Loop para cada linha preenchida
-    for ($i = 0; $i < $qtd; $i++) {
-
-        $stmt->execute([
-            ':previstos'  => $metricas["previstos"][$i],
-            ':defasagem'  => $metricas["qtd_defasagem"][$i],  // defasagem
-            ':avaliados'  => $metricas["avaliados"][$i],
-            ':reducao'    => $metricas["meta_reducao"][$i],   // meta de redução
-            ':status'     => $plano["status"][$i],            // status vem da aba plano
-            ':avaliacao'  => $metricas["avaliacao"][$i],
-            ':ciclo'      => $ciclo,
-            ':componente' => $componente,
-            ':serie'      => $metricas["serie"][$i]
-        ]);
-
+        $pdo->commit();
+        echo "Plano cadastrado com sucesso!";
+        header("Location: ../html/dashboard_escola.php");
+        exit;
+    } catch (Exception $e) {
+        $pdo->rollBack();
+        die("Erro ao cadastrar plano: ".$e->getMessage());
     }
-
-    // Finalizar
-    $pdo->commit();
-
-    echo "<script>
-        alert('Planos cadastrados com sucesso!');
-        window.location.href='../html/dashboard_escola.php';
-    </script>";
-
-} catch (Exception $e) {
-
-    $pdo->rollBack();
-    die("Erro ao cadastrar plano: " . $e->getMessage());
+} else {
+    die("Acesso inválido.");
 }
+?>

@@ -211,3 +211,5 @@ INSERT INTO Ciclo (idCiclo, nome) VALUES
 (2, 'Ciclo II'),
 (3, 'Ciclo III')
 ON DUPLICATE KEY UPDATE nome=VALUES(nome);
+
+INSERT INTO Avaliacao_formativa (nome) VALUES ('CNCA'), ('Avalie CE'), ('Pacto de Recomposição');
