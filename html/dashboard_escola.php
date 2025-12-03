@@ -77,7 +77,7 @@
       <div class="ranking-box mt-4">
         <div class="d-flex justify-content-center mb-4">
           <form class="d-flex align-items-center flex-wrap gap-3">
-            <select class="btn btn-secondary">
+            <select class="btn btn-secondary" required>
               <option>Filtrar por Status</option>
               <option value="1">Não Realizado</option>
               <option value="2">Planejado</option>
@@ -127,7 +127,7 @@
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-              <form method="POST" action="../php/Cadplanos.php" id="idCadPlano">
+              <form method="POST" action="../php/cadplanos.php" id="idCadPlano">
                 <!-- Dados básicos -->
                 <div class="row">
                   <div class="col-md-4 mb-3">
