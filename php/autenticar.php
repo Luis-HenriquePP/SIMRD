@@ -33,15 +33,29 @@ switch ($tipo) {
 }
 
 $sql = "SELECT * FROM $Tabela WHERE $Campo_usuario = :usuario LIMIT 1";
-$stmt = $pdo -> prepare($sql);
-$stmt -> bindValue(":usuario", $usuario, PDO::PARAM_STR);
-$stmt -> execute();
-$user = $stmt -> fetch(PDO::FETCH_ASSOC);
+$stmt = $pdo->prepare($sql);
+$stmt->bindValue(":usuario", $usuario, PDO::PARAM_STR);
+$stmt->execute();
+$user = $stmt->fetch(PDO::FETCH_ASSOC);
 
 if ($user) {
-     if ($senha === $user[$Campo_senha]) {
-        $_SESSION['usuario'] = $usuario;
-        $_SESSION['tipo'] = $tipo;
+    if ($senha === $user[$Campo_senha]) {
+        if ($tipo === 'crede') {
+            $_SESSION['usuario_tipo'] = 'crede';
+            $_SESSION['idCrede'] = $user['idCredes'];
+        }
+
+        if ($tipo === 'secretaria') {
+            $_SESSION['usuario_tipo'] = 'secretaria';
+            $_SESSION['idSecretaria'] = $user['idSecretarias'];
+            $_SESSION['municipio'] = $user['municipio'];
+        }
+
+        if ($tipo === 'escola') {
+            $_SESSION['usuario_tipo'] = 'escola';
+            $_SESSION['idEscola'] = $user['idEscolas'];
+            $_SESSION['municipio'] = $user['municipio'];
+        }
         header("Location: $Redirect");
         exit;
     } else {
