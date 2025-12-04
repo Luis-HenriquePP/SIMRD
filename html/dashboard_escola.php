@@ -58,34 +58,53 @@ $status = $_GET['status'] ?? '';
       </div>
 
       <!-- Cards de Status -->
+      <?php
+      // ÁREA DESTINADA AS CONSULTAS DE CONTAGEM EM TEMPO REAL DO DASHBOARD
+      $stmt = $pdo->query("SELECT COUNT(*) AS total_pendentes FROM Planos WHERE status = 0 ");
+      $pendentes = $stmt->fetchAll(PDO::FETCH_ASSOC);
+      $total_pendentes = $pendentes[0]['total_pendentes'] ?? 'erro';
+
+      $stmt = $pdo->query("SELECT COUNT(*) AS total_exec FROM Planos WHERE status = 1");
+      $execucao = $stmt->fetchAll(PDO::FETCH_ASSOC);
+      $total_exec = $execucao[0]['total_exec'] ?? 'erro';
+
+      $stmt = $pdo->query("SELECT COUNT(*) AS total_concluidos FROM Planos WHERE status = 2");
+      $concluidos = $stmt->fetchAll(PDO::FETCH_ASSOC);
+      $total_concluidos = $concluidos[0]['total_concluidos'] ?? 'erro';
+
+
+      ?>
       <div class="row row-cols-1 row-cols-md-3 g-4 mb-4">
-        <button class="col-auto" style="background:none; border:none;" data-bs-toggle="modal" data-bs-target="#PlanosPendentesModal">
+        <div class="col-sm-4">
           <div class="card h-100 shadow-lg text-center border-0" style="border-radius: 18px;">
             <div class="card-body p-4">
-              <h5 class="card-title fw-bold mb-3">Pendente</h5>
-              <div class="display-4 mb-2 fw-bold text-warning">0</div>
+              <h5 class="card-title fw-bold mb-3"> Pendente </h5>
+              <div class="display-4 mb-2 fw-bold text-warning"> <?php echo $total_pendentes; ?></div>
               <p class="card-text text-muted">Planejamentos Pendentes</p>
             </div>
           </div>
-        </button>
-        <button class="col-auto" style="background:none; border:none;" data-bs-toggle="modal" data-bs-target="#PlanosEmProcessoModal">
+        </div>
+
+        <div class="col-sm-4">
           <div class="card h-100 shadow-lg text-center border-0" style="border-radius: 18px;">
             <div class="card-body p-4">
-              <h5 class="card-title fw-bold mb-3">Em Execução</h5>
-              <div class="display-4 mb-2 fw-bold text-primary">20</div>
+              <h5 class="card-title fw-bold mb-3"> Em Execução </h5>
+              <div class="display-4 mb-2 fw-bold text-primary"><?php echo $total_exec; ?></div>
               <p class="card-text text-muted">Planejamentos em Execução</p>
             </div>
           </div>
-        </button>
-        <button class="col-auto" style="background:none; border:none;" data-bs-toggle="modal" data-bs-target="#PlanosConcluidosModal">
+        </div>
+
+        <div class="col-sm-4">
           <div class="card h-100 shadow-lg text-center border-0" style="border-radius: 18px;">
             <div class="card-body p-4">
-              <h5 class="card-title fw-bold mb-3">Concluídos</h5>
-              <div class="display-4 mb-2 fw-bold text-success">0</div>
+              <h5 class="card-title fw-bold mb-3"> Concluídos</h5>
+              <div class="display-4 mb-2 fw-bold text-success"><?php echo $total_concluidos ?></div>
               <p class="card-text text-muted">Planejamentos Concluídos</p>
             </div>
           </div>
-        </button>
+        </div>
+
       </div>
 
       <!-- Filtro e Tabela de Ranking -->
