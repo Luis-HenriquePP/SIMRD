@@ -201,6 +201,18 @@ CREATE TABLE IF NOT EXISTS `Secretaria_Escola_Plano` (
     ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB;
 
+CREATE TABLE IF NOT EXISTS `Planos_Escola`(
+  `id_planos_escola` INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  `id_planos` INT NOT NULL,
+  `id_escolas` INT NOT NULL,
+
+  FOREIGN KEY (`id_planos`) REFERENCES `Planos`(`idPlanos`)
+    ON DELETE CASCADE ON UPDATE CASCADE,
+
+  FOREIGN KEY (`id_escolas`) REFERENCES `Escolas`(`idEscolas`)
+    ON DELETE CASCADE ON UPDATE CASCADE
+)ENGINE=InnoDB;
+
 -- Restaurando configurações
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
@@ -214,4 +226,8 @@ INSERT INTO Ciclo (idCiclo, nome) VALUES
 (3, 'Ciclo III')
 ON DUPLICATE KEY UPDATE nome=VALUES(nome);
 
+
+
 INSERT INTO Avaliacao_formativa (nome) VALUES ('CNCA'), ('Avalie CE'), ('Pacto de Recomposição');
+ALTER TABLE Planos 
+ADD COLUMN data_inicio DATE NULL AFTER responsavel;

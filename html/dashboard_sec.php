@@ -54,37 +54,38 @@ $componente = $_GET['componente'] ?? '';
       $stmt = $pdo->prepare("
     SELECT COUNT(*) AS total_pendentes 
     FROM Planos p
-    JOIN secretaria_escola_plano sep ON p.idPlanos = sep.id_planos
-    JOIN escolas e ON sep.id_escolas = e.idEscolas
+    JOIN Planos_Escola pe ON pe.id_planos = p.idPlanos
+    JOIN Escolas e ON pe.id_escolas = e.idEscolas
     WHERE p.status = 0
       AND e.municipio = :municipio
-    ");
-
+");
       $stmt->execute(['municipio' => $municipio_sec]);
       $total_pendentes = $stmt->fetch()['total_pendentes'];
+
 
 
       $stmt = $pdo->prepare("
     SELECT COUNT(*) AS total_exec 
     FROM Planos p
-    JOIN secretaria_escola_plano sep ON p.idPlanos = sep.id_planos
-    JOIN escolas e ON sep.id_escolas = e.idEscolas
+    JOIN Planos_Escola pe ON pe.id_planos = p.idPlanos
+    JOIN Escolas e ON pe.id_escolas = e.idEscolas
     WHERE p.status = 1
       AND e.municipio = :municipio
-    ");
+");
       $stmt->execute(['municipio' => $municipio_sec]);
       $total_exec = $stmt->fetch()['total_exec'];
 
       $stmt = $pdo->prepare("
     SELECT COUNT(*) AS total_concluidos 
     FROM Planos p
-    JOIN secretaria_escola_plano sep ON p.idPlanos = sep.id_planos
-    JOIN escolas e ON sep.id_escolas = e.idEscolas
+    JOIN Planos_Escola pe ON pe.id_planos = p.idPlanos
+    JOIN Escolas e ON pe.id_escolas = e.idEscolas
     WHERE p.status = 2
       AND e.municipio = :municipio
 ");
       $stmt->execute(['municipio' => $municipio_sec]);
       $total_concluidos = $stmt->fetch()['total_concluidos'];
+
 
       ?>
       <div class="row row-cols-1 row-cols-md-3 g-4 mb-4">
@@ -126,7 +127,7 @@ $componente = $_GET['componente'] ?? '';
             <div class="modal-body">
               <table class="table">
                 <thead>
-                  <tr>
+                  <tr style="text-align: center;">
                     <th>Escola</th>
                     <th>Plano</th>
                     <th>Componente</th>
@@ -134,14 +135,45 @@ $componente = $_GET['componente'] ?? '';
                     <th>Data de Inicio</th>
                   </tr>
                 </thead>
+                <?php
+                require_once '../php/connect.php';
+
+                $idSecretaria = $_SESSION['idSecretaria'];
+
+                $sql = "SELECT 
+                e.nome AS escola,
+                p.nome_plano AS plano,
+                p.componente,
+                p.responsavel,
+                p.data_inicio
+            FROM Planos p
+            JOIN Planos_Escola pe ON pe.id_planos = p.idPlanos
+            JOIN Escolas e ON e.idEscolas = pe.id_escolas
+            WHERE p.status = 0
+              AND e.municipio = (
+                  SELECT municipio FROM Secretarias WHERE idSecretarias = ?
+              )";
+
+                $stmt = $pdo->prepare($sql);
+                $stmt->execute([$idSecretaria]);
+                $dados = $stmt->fetchAll(PDO::FETCH_ASSOC);
+                $mapaComponentes = [
+                  '1' => 'Língua Portuguesa',
+                  '2' => 'Matemática'
+                ];
+
+                ?>
+
                 <tbody>
-                  <tr>
-                    <td>EEF Carmozina Bittencourt de Pinho</td>
-                    <td>Para suprir a carência em operações matemá...</td>
-                    <td>Matematica</td>
-                    <td>Olavo de Carvalho</td>
-                    <td>01/01/2024</td>
-                  </tr>
+                  <?php foreach ($dados as $row): ?>
+                    <tr style="text-align: center;">
+                      <td><?php echo htmlspecialchars($row['escola']) ?? ''; ?></td>
+                      <td><?php echo htmlspecialchars($row['plano']) ?? ''; ?></td>
+                      <td><?php echo $mapaComponentes[$row['componente']] ?? ''; ?></td>
+                      <td><?php echo htmlspecialchars($row['responsavel']) ?? ''; ?></td>
+                      <td><?php echo htmlspecialchars($row['data_inicio']) ?? ''; ?></td>
+                    </tr>
+                  <?php endforeach; ?>
                 </tbody>
               </table>
             </div>
@@ -166,6 +198,26 @@ $componente = $_GET['componente'] ?? '';
                     <th>Data de Inicio</th>
                   </tr>
                 </thead>
+                <?php 
+                $sqlExec = "SELECT 
+    e.nome AS escola,
+    p.nome_plano AS plano,
+    p.componente,
+    p.responsavel,
+    p.data_inicio
+FROM Planos p
+JOIN Planos_Escola pe ON pe.id_planos = p.idPlanos
+JOIN Escolas e ON e.idEscolas = pe.id_escolas
+WHERE p.status = 1
+  AND e.municipio = (
+      SELECT municipio FROM Secretarias WHERE idSecretarias = ?
+  )";
+
+$stmtExec = $pdo->prepare($sqlExec);
+$stmtExec->execute([$idSecretaria]);
+$dadosExec = $stmtExec->fetchAll(PDO::FETCH_ASSOC);
+
+                ?>
                 <tbody>
                   <tr>
                     <td>EEF Carmozina Bittencourt de Pinho</td>
@@ -198,6 +250,26 @@ $componente = $_GET['componente'] ?? '';
                     <th>Data de Inicio</th>
                   </tr>
                 </thead>
+                <?php 
+                $sqlConc = "SELECT 
+    e.nome AS escola,
+    p.nome_plano AS plano,
+    p.componente,
+    p.responsavel,
+    p.data_inicio
+FROM Planos p
+JOIN Planos_Escola pe ON pe.id_planos = p.idPlanos
+JOIN Escolas e ON e.idEscolas = pe.id_escolas
+WHERE p.status = 2
+  AND e.municipio = (
+      SELECT municipio FROM Secretarias WHERE idSecretarias = ?
+  )";
+
+$stmtConc = $pdo->prepare($sqlConc);
+$stmtConc->execute([$idSecretaria]);
+$dadosConc = $stmtConc->fetchAll(PDO::FETCH_ASSOC);
+
+                ?>
                 <tbody>
                   <tr>
                     <td>EEF Carmozina Bittencourt de Pinho</td>

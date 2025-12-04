@@ -203,6 +203,18 @@ CREATE TABLE IF NOT EXISTS `Escolas` (
     ON UPDATE NO ACTION
 ) ENGINE=InnoDB;
 
+CREATE TABLE IF NOT EXISTS `Planos_Escola`(
+  `id_planos_escola` INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  `id_planos` INT NOT NULL,
+  `id_escolas` INT NOT NULL,
+
+  FOREIGN KEY (`id_planos`) REFERENCES `Planos`(`idPlanos`)
+    ON DELETE CASCADE ON UPDATE CASCADE,
+
+  FOREIGN KEY (`id_escolas`) REFERENCES `Escolas`(`idEscolas`)
+    ON DELETE CASCADE ON UPDATE CASCADE
+)ENGINE=InnoDB;
+
 CREATE TABLE IF NOT EXISTS `Secretaria_Escola_Plano` (
   `id_secretaria_escola_plano` INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
   `id_secretarias` INT NOT NULL,
@@ -218,6 +230,10 @@ CREATE TABLE IF NOT EXISTS `Secretaria_Escola_Plano` (
   FOREIGN KEY (`id_planos`) REFERENCES `Planos`(`idPlanos`)
     ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB;
+
+ALTER TABLE `planos` ADD `nome_plano` VARCHAR(45) NOT NULL AFTER `idPlanos`;
+ALTER TABLE `Planos` 
+ADD COLUMN `data_inicio` DATE NULL AFTER `responsavel`;
 
 -- Restaurar estados anteriores
 SET SQL_MODE=@OLD_SQL_MODE;
