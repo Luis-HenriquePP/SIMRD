@@ -3,15 +3,15 @@ ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 session_start();
-if (!isset($_SESSION['idSecretaria']) || $_SESSION['usuario_tipo'] !== 'secretaria') {
-  header('Location: ../html/login.php?tipo=secretaria');
+
+if (!isset($_SESSION['idEscola']) || $_SESSION['usuario_tipo'] !== 'escola') {
+  header('Location: ../html/login.php?tipo=escola');
   exit();
 }
 require_once '../php/connect.php';
-$municipio_sec = $_SESSION['municipio']; // município da secretaria logada
-$idSecretaria = $_SESSION['idSecretaria'];
+$municipio_esc = $_SESSION['municipio']; // município da escola logada
+$idEscola = $_SESSION['idEscola'];
 $status = $_GET['status'] ?? '';
-$componente = $_GET['componente'] ?? '';
 ?>
 <!DOCTYPE html>
 <html lang="pt-BR">
