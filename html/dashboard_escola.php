@@ -1,3 +1,18 @@
+<?php
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+session_start();
+if (!isset($_SESSION['idSecretaria']) || $_SESSION['usuario_tipo'] !== 'secretaria') {
+  header('Location: ../html/login.php?tipo=secretaria');
+  exit();
+}
+require_once '../php/connect.php';
+$municipio_sec = $_SESSION['municipio']; // município da secretaria logada
+$idSecretaria = $_SESSION['idSecretaria'];
+$status = $_GET['status'] ?? '';
+$componente = $_GET['componente'] ?? '';
+?>
 <!DOCTYPE html>
 <html lang="pt-BR">
 
@@ -337,8 +352,8 @@
 
     $(document).on("click", "#addMetricas", adicionarLinhaMetricas);
 
-    $(document).on("change", ".avalMetricas, .serieMetricas", function () {
-      $("#tabelaMetricas .linhaMetricas").each(function (index) {
+    $(document).on("change", ".avalMetricas, .serieMetricas", function() {
+      $("#tabelaMetricas .linhaMetricas").each(function(index) {
         let avalValor = $(this).find(".avalMetricas").val();
         let avalTexto = $(this).find(".avalMetricas option:selected").text();
         let serieValor = $(this).find(".serieMetricas").val();
@@ -352,7 +367,7 @@
       });
     });
 
-    $(document).on("click", ".btnRemoverLinha", function () {
+    $(document).on("click", ".btnRemoverLinha", function() {
       let tbody = $(this).closest("tbody");
       if (tbody.children().length > 1) {
         let index = $(this).closest("tr").index();
