@@ -49,6 +49,7 @@ $componente = $_GET['componente'] ?? '';
   <main id="main">
     <div class="container-fluid">
       <h2>Dashboard Secretaria</h2>
+      <br><br>
       <?php
       // ÁREA DESTINADA AS CONSULTAS DE CONTAGEM EM TEMPO REAL DO DASHBOARD
       $stmt = $pdo->prepare("
@@ -115,6 +116,7 @@ $componente = $_GET['componente'] ?? '';
           </div>
         </button>
       </div>
+      <br>
       <div class="modal fade" id="PlanosPendentesModal" tabindex="-1" aria-labelledby="PlanoPedentesModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg">
           <div class="modal-content">
@@ -348,15 +350,15 @@ WHERE e.municipio = (
       <div class="ranking-box mt-4">
         <div class="d-flex justify-content-center mb-4">
           <form class="d-flex align-items-center flex-wrap gap-3">
-            <select class="btn btn-secondary">
-              <option value="">Filtrar por Status</option>
+            <select class="btn btn-secondary" name="status">
+              <option value="" >Filtrar por Status</option>
               <option value="6" <?= ($status === '6') ? 'selected' : '' ?>>Não realizada</option>
               <option value="3" <?= ($status === '3') ? 'selected' : '' ?>>Planejado</option>
               <option value="4" <?= ($status === '4') ? 'selected' : '' ?>>Replanejado</option>
               <option value="5" <?= ($status === '5') ? 'selected' : '' ?>>Realizado no Prazo</option>
             </select>
-            <input type="text" placeholder="Buscar Escola" class="form-control w-auto">
-            <select class="btn btn-secondary">
+            <input type="text" placeholder="Buscar Escola" class="form-control w-auto" name="escola" value="<?= htmlspecialchars($buscaEscola) ?>">
+            <select class="btn btn-secondary" name="componente">
               <option value="">Filtrar por Componente</option>
               <option value="1" <?= ($componente === '1') ? 'selected' : '' ?>>Língua Portuguesa</option>
               <option value="2" <?= ($componente === '2') ? 'selected' : '' ?>>Matemática</option>
@@ -368,7 +370,7 @@ WHERE e.municipio = (
 
         <table class="table">
           <thead>
-            <tr>
+            <tr style="text-align: center;">
               <th>Status</th>
               <th>Escola</th>
               <th>Plano</th>
