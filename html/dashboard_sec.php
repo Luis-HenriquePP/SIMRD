@@ -62,8 +62,6 @@ $componente = $_GET['componente'] ?? '';
       $stmt->execute(['municipio' => $municipio_sec]);
       $total_pendentes = $stmt->fetch()['total_pendentes'];
 
-
-
       $stmt = $pdo->prepare("
     SELECT COUNT(*) AS total_exec 
     FROM Planos p
@@ -139,7 +137,6 @@ $componente = $_GET['componente'] ?? '';
                 require_once '../php/connect.php';
 
                 $idSecretaria = $_SESSION['idSecretaria'];
-
                 $sql = "SELECT 
                 e.nome AS escola,
                 p.nome_plano AS plano,
@@ -163,7 +160,6 @@ $componente = $_GET['componente'] ?? '';
                 ];
 
                 ?>
-
                 <tbody>
                   <?php foreach ($dados as $row): ?>
                     <tr style="text-align: center;">
@@ -198,34 +194,40 @@ $componente = $_GET['componente'] ?? '';
                     <th>Data de Inicio</th>
                   </tr>
                 </thead>
-                <?php 
+                <?php
+                $idSecretaria = $_SESSION['idSecretaria'];
                 $sqlExec = "SELECT 
-    e.nome AS escola,
-    p.nome_plano AS plano,
-    p.componente,
-    p.responsavel,
-    p.data_inicio
-FROM Planos p
-JOIN Planos_Escola pe ON pe.id_planos = p.idPlanos
-JOIN Escolas e ON e.idEscolas = pe.id_escolas
-WHERE p.status = 1
-  AND e.municipio = (
-      SELECT municipio FROM Secretarias WHERE idSecretarias = ?
-  )";
+                e.nome AS escola,
+                p.nome_plano AS plano,
+                p.componente,
+                p.responsavel,
+                p.data_inicio
+                FROM Planos p
+                JOIN Planos_Escola pe ON pe.id_planos = p.idPlanos
+                JOIN Escolas e ON e.idEscolas = pe.id_escolas
+                WHERE p.status = 1
+                  AND e.municipio = (
+                      SELECT municipio FROM Secretarias WHERE idSecretarias = ?
+                  )";
 
-$stmtExec = $pdo->prepare($sqlExec);
-$stmtExec->execute([$idSecretaria]);
-$dadosExec = $stmtExec->fetchAll(PDO::FETCH_ASSOC);
-
+                $stmtExec = $pdo->prepare($sqlExec);
+                $stmtExec->execute([$idSecretaria]);
+                $dadosExec = $stmtExec->fetchAll(PDO::FETCH_ASSOC);
+                $mapaComponentes = [
+                  '1' => 'Língua Portuguesa',
+                  '2' => 'Matemática'
+                ];
                 ?>
                 <tbody>
-                  <tr>
-                    <td>EEF Carmozina Bittencourt de Pinho</td>
-                    <td>Para suprir a carência em operações matemá...</td>
-                    <td>Matematica</td>
-                    <td>Olavo de Carvalho</td>
-                    <td>01/01/2024</td>
-                  </tr>
+                  <?php foreach ($dadosExec as $row): ?>
+                    <tr style="text-align: center;">
+                      <td><?php echo htmlspecialchars($row['escola']) ?? ''; ?></td>
+                      <td><?php echo htmlspecialchars($row['plano']) ?? ''; ?></td>
+                      <td><?php echo $mapaComponentes[$row['componente']] ?? ''; ?></td>
+                      <td><?php echo htmlspecialchars($row['responsavel']) ?? ''; ?></td>
+                      <td><?php echo htmlspecialchars($row['data_inicio']) ?? ''; ?></td>
+                    </tr>
+                    <?php endforeach; ?>
                 </tbody>
               </table>
             </div>
@@ -250,7 +252,7 @@ $dadosExec = $stmtExec->fetchAll(PDO::FETCH_ASSOC);
                     <th>Data de Inicio</th>
                   </tr>
                 </thead>
-                <?php 
+                <?php
                 $sqlConc = "SELECT 
     e.nome AS escola,
     p.nome_plano AS plano,
@@ -265,9 +267,9 @@ WHERE p.status = 2
       SELECT municipio FROM Secretarias WHERE idSecretarias = ?
   )";
 
-$stmtConc = $pdo->prepare($sqlConc);
-$stmtConc->execute([$idSecretaria]);
-$dadosConc = $stmtConc->fetchAll(PDO::FETCH_ASSOC);
+                $stmtConc = $pdo->prepare($sqlConc);
+                $stmtConc->execute([$idSecretaria]);
+                $dadosConc = $stmtConc->fetchAll(PDO::FETCH_ASSOC);
 
                 ?>
                 <tbody>
