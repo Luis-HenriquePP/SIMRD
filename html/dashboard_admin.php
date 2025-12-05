@@ -230,7 +230,6 @@ $dados = $stmt->fetchAll(PDO::FETCH_ASSOC);
               <option value="4" <?= ($status === '4') ? 'selected' : '' ?>>Replanejado</option>
               <option value="5" <?= ($status === '5') ? 'selected' : '' ?>>Realizado no Prazo</option>
             </select>
-
             <select class="btn btn-secondary" name="componente">
               <option value="">Filtrar por Componente</option>
               <option value="1" <?= ($componente === '1') ? 'selected' : '' ?>>Língua Portuguesa</option>
