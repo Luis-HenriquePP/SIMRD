@@ -22,11 +22,11 @@ $sql = "SELECT
           p.idPlanos AS plano,
           st.nome AS status,
           p.componente AS componente
-        FROM secretaria_escola_plano AS sep
-        JOIN secretarias s ON sep.id_secretarias = s.idSecretarias
-        JOIN escolas e ON sep.id_escolas = e.idEscolas
-        JOIN planos p ON sep.id_planos = p.idPlanos
-        JOIN status st ON p.status = st.idStatus
+        FROM Secretaria_Escola_Plano AS sep
+        JOIN Secretarias s ON sep.id_secretarias = s.idSecretarias
+        JOIN Escolas e ON sep.id_escolas = e.idEscolas
+        JOIN Planos p ON sep.id_planos = p.idPlanos
+        JOIN Status st ON p.status = st.idStatus
         WHERE 1=1";
 
 // FILTROS
