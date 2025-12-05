@@ -253,33 +253,39 @@ $componente = $_GET['componente'] ?? '';
                   </tr>
                 </thead>
                 <?php
+                 $idSecretaria = $_SESSION['idSecretaria'];
                 $sqlConc = "SELECT 
-    e.nome AS escola,
-    p.nome_plano AS plano,
-    p.componente,
-    p.responsavel,
-    p.data_inicio
-FROM Planos p
-JOIN Planos_Escola pe ON pe.id_planos = p.idPlanos
-JOIN Escolas e ON e.idEscolas = pe.id_escolas
-WHERE p.status = 2
-  AND e.municipio = (
-      SELECT municipio FROM Secretarias WHERE idSecretarias = ?
-  )";
+                e.nome AS escola,
+                p.nome_plano AS plano,
+                p.componente,
+                p.responsavel,
+                p.data_inicio
+              FROM Planos p
+              JOIN Planos_Escola pe ON pe.id_planos = p.idPlanos
+              JOIN Escolas e ON e.idEscolas = pe.id_escolas
+              WHERE p.status = 2
+                AND e.municipio = (
+                    SELECT municipio FROM Secretarias WHERE idSecretarias = ?
+              )";
 
-                $stmtConc = $pdo->prepare($sqlConc);
-                $stmtConc->execute([$idSecretaria]);
-                $dadosConc = $stmtConc->fetchAll(PDO::FETCH_ASSOC);
-
+              $stmtConc = $pdo->prepare($sqlConc);
+              $stmtConc->execute([$idSecretaria]);
+              $dadosConc = $stmtConc->fetchAll(PDO::FETCH_ASSOC);
+              $mapaComponentes = [
+                '1' => 'Língua Portuguesa',
+                '2' => 'Matemática'
+                ];
                 ?>
                 <tbody>
-                  <tr>
-                    <td>EEF Carmozina Bittencourt de Pinho</td>
-                    <td>Para suprir a carência em operações matemá...</td>
-                    <td>Matematica</td>
-                    <td>Olavo de Carvalho</td>
-                    <td>01/01/2024</td>
-                  </tr>
+                  <?php foreach ($dadosConc as $row): ?>
+                    <tr style="text-align: center;">
+                      <td><?php echo htmlspecialchars($row['escola']) ?? ''; ?></td>
+                      <td><?php echo htmlspecialchars($row['plano']) ?? ''; ?></td>
+                      <td><?php echo $mapaComponentes[$row['componente']] ?? ''; ?></td>
+                      <td><?php echo htmlspecialchars($row['responsavel']) ?? ''; ?></td>
+                      <td><?php echo htmlspecialchars($row['data_inicio']) ?? ''; ?></td>
+                    </tr>
+                    <?php endforeach; ?>
                 </tbody>
               </table>
             </div>
@@ -297,9 +303,7 @@ WHERE p.status = 2
               <option value="4">Realizado no Prazo</option>
               <option value="5">Realizado com Atraso</option>
             </select>
-
             <input type="text" placeholder="Buscar Escola" class="form-control w-auto">
-
             <select class="btn btn-secondary">
               <option>Filtrar por Componente</option>
               <option value="1">Língua Portuguesa</option>
@@ -310,7 +314,6 @@ WHERE p.status = 2
         <div class="mt-3 mb-3 justify-content-end d-flex">
           <button class="btn btn-success">Filtrar</button>
         </div>
-
         <table class="table">
           <thead>
             <tr>
@@ -348,5 +351,4 @@ WHERE p.status = 2
     }
   }
 </script>
-
 </html>
